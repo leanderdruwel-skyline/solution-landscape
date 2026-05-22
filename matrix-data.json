@@ -538,8 +538,9 @@
       "repo": "SkylineCommunications/SLC-S-Relationships",
       "checks": {
         "catalog-doc": {
-          "status": "fail",
-          "note": "1 error: Key Features section missing. 3 warnings: About lacks value focus, Use Cases are hypothetical, Prerequisites missing.",
+          "status": "partial",
+          "note": "No Key Features section; Overview heading non-standard. PR #2 open with improvements.",
+          "prUrl": "https://github.com/SkylineCommunications/SLC-S-Relationships/pull/2",
           "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-Relationships/catalog-doc.md",
           "updatedAt": "2026-05-22"
         }
