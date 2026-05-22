@@ -38,7 +38,7 @@
       "shortName": "Catalog Doc",
       "name": "Catalog Documentation",
       "category": "documentation",
-      "description": "The CatalogInformation/README.md is the storefront of your solution on dataminer.services. It must include a clear value proposition, key features (max 5), use cases, prerequisites (version ranges, not pinned), and 1\u20133 screenshots. Contact details and personal email addresses are forbidden.",
+      "description": "The storefront of your solution on dataminer.services.\n\nMust include:\n\u2022 Clear value proposition\n\u2022 Key features (max 5)\n\u2022 Use cases\n\u2022 Prerequisites (version ranges, not pinned)\n\u2022 1\u20133 screenshots\n\nContact details and personal email are forbidden.",
       "agent": "catalog-doc-checker.agent.md",
       "agentStatus": "active",
       "docUrl": "https://docs.dataminer.services/user-guide/Cloud_Platform/Catalog/Register_Catalog_Item.html"
@@ -48,7 +48,7 @@
       "shortName": "README",
       "name": "Source README",
       "category": "documentation",
-      "description": "A developer-oriented README at the repository root covering architecture overview, getting started, project structure, and contribution guide. Distinct from the Catalog README \u2014 targets contributors and integrators, not end users.",
+      "description": "Developer-oriented README at the repository root.\n\nMust cover:\n\u2022 Architecture overview\n\u2022 Getting started\n\u2022 Project structure\n\u2022 Contribution guide\n\nDistinct from the Catalog README \u2014 targets contributors and integrators, not end users.",
       "agent": "readme-writer.agent.md",
       "agentStatus": "active",
       "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
@@ -58,7 +58,7 @@
       "shortName": "Release Notes",
       "name": "Release Notes",
       "category": "documentation",
-      "description": "Every release must have release notes written in plain language for non-technical audiences. Notes describe what changed and why it matters \u2014 not just a list of commits or ticket numbers.",
+      "description": "Every release must have release notes in plain language.\n\nNotes should describe what changed and why it matters \u2014 not just a list of commits or ticket numbers.\n\nWritten for non-technical audiences.",
       "agent": "rn-write.agent.md",
       "agentStatus": "active",
       "docUrl": "https://docs.dataminer.services/user-guide/Cloud_Platform/Catalog/Register_Catalog_Item.html"
@@ -68,7 +68,7 @@
       "shortName": "SDM",
       "name": "SDM Compliance",
       "category": "architecture",
-      "description": "The Standard Data Model (SDM) defines a 3-tier architecture: T1 Foundational (SdmObject<T> models + repository storage), T2 Encapsulated (IApiHelper interface + class accepting IConnection), T3 Federated (registered via SdmRegistrar, consumable cross-solution). All three tiers must pass for a fully compliant solution.",
+      "description": "Standard Data Model (SDM) \u2014 3-tier architecture:\n\n\u2022 T1 Foundational: SdmObject<T> models + repository storage\n\u2022 T2 Encapsulated: IApiHelper interface accepting IConnection\n\u2022 T3 Federated: registered via SdmRegistrar\n\nAll tiers must pass. This is an existing architecture standard.",
       "agent": "sdm-compliance-checker.agent.md",
       "agentStatus": "active",
       "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
@@ -78,7 +78,7 @@
       "shortName": "Storage",
       "name": "Storage / DOM Objects",
       "category": "architecture",
-      "description": "DOM modules must be defined using [SdmDomStorage] and [GenerateExposers] attributes, producing typed storage mappers (*.g.cs). Module IDs must be namespaced to the owning solution (e.g. infraops/assets). No solution may directly access a DOM module owned by another solution \u2014 cross-solution data must flow through the owning solution's typed IApiHelper.",
+      "description": "DOM modules must be properly scoped:\n\n\u2022 Use [SdmDomStorage] + [GenerateExposers]\n\u2022 Module IDs namespaced to solution\n  (e.g. infraops/assets, not just assets)\n\u2022 Storage mappers (*.g.cs) committed\n\nNever access another solution\u2019s DOM module directly \u2014 use their typed IApiHelper.",
       "agent": "solution-storage-mapper.agent.md",
       "agentStatus": "active",
       "docUrl": "https://docs.dataminer.services/user-guide/Advanced_Modules/DOM/DOM.html"
@@ -88,7 +88,7 @@
       "shortName": "SRM",
       "name": "SRM Resource Types",
       "category": "architecture",
-      "description": "Solutions that model bookable services must define Profile Definitions with parameters per resource capability and Resource Pool types linked to SDM entities. Resources must be named following the SOLCODE naming convention (e.g. 'IFO Encoder'). Only relevant for solutions that orchestrate services \u2014 others are N/A.",
+      "description": "For solutions with bookable services:\n\n\u2022 Define Profile Definitions per resource capability\n\u2022 Map Resource Pool types to SDM entities\n\u2022 Name resources using SOLCODE convention\n\nN/A for solutions that do not orchestrate services.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/user-guide/Advanced_Modules/Service_and_Resource_Management/About_SRM.html"
@@ -98,7 +98,7 @@
       "shortName": "Solution Deps",
       "name": "Inter-Solution References",
       "category": "architecture",
-      "description": "Cross-solution dependencies must flow through typed NuGet API helpers \u2014 never through direct DOM access to another solution's module. All consumed SDM packages must be declared in Directory.Packages.props. The dependency graph must be known, documented, and free of cycles. This is not new architecture \u2014 it is the natural outcome of SDM T3 compliance.",
+      "description": "Cross-solution dependencies must flow through typed NuGet API helpers \u2014 never direct DOM access.\n\n\u2022 Declare consumed SDM packages in Directory.Packages.props\n\u2022 Dependency graph documented and free of cycles\n\nThis is the natural outcome of SDM T3 compliance, not a new requirement.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
@@ -117,7 +117,7 @@
       "shortName": "Typed API",
       "name": "Typed API Objects",
       "category": "api",
-      "description": "The solution must expose an IApiHelper interface with typed repository properties (IBulkRepository<T>, IObservableRepository<T>) \u2014 one per domain object. Consumers work with typed objects without touching DOM storage directly. This is SDM T2 compliance applied at the API surface level.",
+      "description": "The solution exposes an IApiHelper interface with typed repository properties \u2014 one per domain object.\n\n\u2022 IBulkRepository<T> or IObservableRepository<T>\n\u2022 Consumers work with typed objects without touching DOM directly\n\nThis is SDM T2 compliance at the API surface level.",
       "agent": "solution-api-surface-mapper.agent.md",
       "agentStatus": "active",
       "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
@@ -127,7 +127,7 @@
       "shortName": "GQI/UDAPI",
       "name": "GQI & User-Defined APIs",
       "category": "api",
-      "description": "GQI ad-hoc data sources expose objects for DataMiner dashboards and low-code apps. User-Defined API (UDAPI) endpoints expose objects for external HTTP consumers and AI agents. Both are required for a solution to be considered fully externally consumable.",
+      "description": "Full external consumability requires both:\n\n\u2022 GQI ad-hoc data sources \u2014 expose objects to dashboards and low-code apps\n\u2022 UDAPI endpoints \u2014 expose objects to external HTTP clients and AI agents",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/user-guide/Advanced_Modules/User_Defined_APIs/UD_APIs.html"
@@ -137,7 +137,7 @@
       "shortName": "Devpack",
       "name": "NuGet Devpack Published",
       "category": "api",
-      "description": "The solution's typed API helper (IApiHelper + models) must be published as a NuGet package to the internal Skyline feed. This allows other solutions to take a typed dependency without referencing source code. Without a NuGet devpack, cross-solution consumption requires code duplication.",
+      "description": "The solution\u2019s typed API helper (IApiHelper + models) must be published as a NuGet package.\n\nPublish to the internal Skyline feed so other solutions can take a typed dependency without referencing source code.\n\nWithout a devpack, cross-solution consumption requires code duplication.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
@@ -147,7 +147,7 @@
       "shortName": "Privacy",
       "name": "Component Privacy",
       "category": "api",
-      "description": "Only the main solution package may be publicly visible in the DataMiner Catalog. Sub-components used exclusively within the solution (individual scripts, add-ons, demo data, internal installers) must be marked private in their manifest.yml using registrationOptions.isHidden: true. Sub-components appearing publicly in the Catalog clutter the marketplace and confuse operators.",
+      "description": "Only the main solution package may be public in the Catalog.\n\nMark all sub-components private in manifest.yml:\n  registrationOptions:\n    isHidden: true\n\nAffects: individual scripts, add-ons, demo data, internal installers.\n\nSub-components appearing publicly clutter the Catalog.",
       "agent": "component-privacy-checker.agent.md",
       "agentStatus": "active",
       "docUrl": "https://docs.dataminer.services/user-guide/Cloud_Platform/Catalog/Register_Catalog_Item.html"
@@ -157,7 +157,7 @@
       "shortName": "Naming",
       "name": "Naming Convention",
       "category": "quality",
-      "description": "All catalog item components follow Skyline naming conventions: Automation scripts use SOLCODE-TYPE-name (hyphen separator), user-visible components (apps, dashboards, elements) use SOLCODE name (space separator). SOLCODE is a 3-letter uppercase code unique to the solution. This is an existing published guideline, not a new requirement.",
+      "description": "All components follow Skyline naming conventions:\n\n\u2022 Automation scripts: SOLCODE-TYPE-name (hyphen)\n\u2022 Apps, dashboards, elements: SOLCODE name (space)\n\nSOLCODE is a 3-letter uppercase code unique to the solution.\n\nThis is an existing published guideline.",
       "agent": "naming-convention-check.agent.md",
       "agentStatus": "active",
       "docUrl": "https://aka.dataminer.services/Naming_Conventions_For_Catalog_Item_Components"
@@ -167,7 +167,7 @@
       "shortName": "Tests",
       "name": "Automated Tests",
       "category": "quality",
-      "description": "Unit tests using DOM mocks (DomConnectionMock from Skyline.DataMiner.Utils.DOM) or repository interface stubs must cover core business logic. CI must run tests on every PR. Tests should run offline \u2014 without a live DataMiner system \u2014 to give fast, reliable feedback.",
+      "description": "Unit tests must cover core business logic:\n\n\u2022 Use DomConnectionMock or repository stubs\n\u2022 Run offline \u2014 no live DataMiner system needed\n\u2022 CI runs tests on every PR\n\nFast, reliable feedback without infrastructure.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
@@ -177,7 +177,7 @@
       "shortName": "CI/CD",
       "name": "CI/CD Pipeline",
       "category": "quality",
-      "description": "A GitHub Actions pipeline must: build on every PR, run all tests automatically, and publish the NuGet or DataMiner package on a release tag. The pipeline on main must be green. This is a standard Skyline GitHub guideline, not optional.",
+      "description": "GitHub Actions pipeline must:\n\n\u2022 Build on every PR\n\u2022 Run all tests automatically\n\u2022 Publish NuGet / DataMiner package on release tag\n\nMain branch must be green. Standard Skyline GitHub guideline.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
@@ -187,7 +187,7 @@
       "shortName": "Deps",
       "name": "Dependency Health",
       "category": "quality",
-      "description": "All NuGet packages must be up to date with no deprecated packages in use. Solutions consuming shared SDM packages (e.g. Skyline.DataMiner.SDM.Ticketing) must be on consistent versions across the landscape to avoid runtime conflicts when solutions interact.",
+      "description": "Keep NuGet dependencies healthy:\n\n\u2022 No deprecated packages\n\u2022 All packages up to date\n\u2022 Consistent SDM package versions across solutions that interact\n\nVersion drift between solutions causes runtime conflicts.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
@@ -197,7 +197,7 @@
       "shortName": "Freshness",
       "name": "Health & Freshness",
       "category": "quality",
-      "description": "A healthy solution has commits within the last 3 months, a green CI pipeline, a manageable open-issue count, and regular releases. Stale solutions signal abandonment or accumulating technical debt. All data is sourced from the GitHub API \u2014 no code scanning needed.",
+      "description": "Signs of a healthy, maintained solution:\n\n\u2022 Commits within the last 3 months\n\u2022 Green CI pipeline\n\u2022 Low open-issue count\n\u2022 Regular releases\n\nAll data sourced from the GitHub API.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
@@ -207,7 +207,7 @@
       "shortName": "LCA",
       "name": "Low-Code App",
       "category": "ux",
-      "description": "A DataMiner low-code app must be present, functional, and named after the solution (SOLNAME). Operators should be able to use it without training: clear navigation, consistent layout, proper use of DataMiner style guide components. Named following SOLNAME convention per Skyline naming guidelines.",
+      "description": "A DataMiner low-code app must be present and functional.\n\n\u2022 Named after the solution (SOLNAME)\n\u2022 Operators can use it without training\n\u2022 Clear navigation, consistent layout\n\u2022 Follows DataMiner style guide",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/user-guide/Low_Code_Apps/Low_Code_Apps.html"
@@ -217,7 +217,7 @@
       "shortName": "Demo",
       "name": "Demo / Mock Mode",
       "category": "ux",
-      "description": "Mock demo data injected through the solution's typed API allows POs, prospects, and developers to evaluate the solution without a live system or real data. Mocked data covers typical use cases and is toggled via the API \u2014 not hardcoded in scripts. Currently the highest-value gap across all solutions.",
+      "description": "Mock data injected through the typed API to evaluate the solution without a live system.\n\n\u2022 Covers typical use cases\n\u2022 Toggled via API \u2014 not hardcoded in scripts\n\nCurrently the highest-value gap across all solutions.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
@@ -227,7 +227,7 @@
       "shortName": "UX Audit",
       "name": "LCA UX Audit",
       "category": "ux",
-      "description": "The DataMiner low-code app must pass a full UX audit: DataMiner style guide compliance, consistent spacing and typography, proper status chips, empty states, and loading indicators. Run the dataminer-ux-audit agent for a full scored report with annotated screenshots.",
+      "description": "The DataMiner low-code app must pass a full UX audit:\n\n\u2022 DataMiner style guide compliance\n\u2022 Consistent spacing and typography\n\u2022 Proper status chips\n\u2022 Empty states and loading indicators\n\nRun the dataminer-ux-audit agent for a scored report.",
       "agent": "dataminer-ux-audit",
       "agentStatus": "active",
       "docUrl": "https://docs.dataminer.services/user-guide/Low_Code_Apps/Low_Code_Apps.html"
@@ -237,7 +237,7 @@
       "shortName": "PO",
       "name": "Product Owner",
       "category": "process",
-      "description": "A named Product Owner must be identified for each solution, tracked via a .github/CODEOWNERS file. The PO is accountable for roadmap, backlog, and release decisions. This aligns with Skyline's product management practice and ensures every solution has a clear voice for prioritisation.",
+      "description": "A named Product Owner identified in .github/CODEOWNERS.\n\nThe PO is accountable for:\n\u2022 Roadmap\n\u2022 Backlog\n\u2022 Release decisions\n\nNot just technical delivery \u2014 clear product ownership per Skyline practice.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
@@ -247,7 +247,7 @@
       "shortName": "Backlog",
       "name": "Active Backlog",
       "category": "process",
-      "description": "GitHub Issues or Projects must be used as an active backlog. Issues should be labeled, triaged within 2 weeks, and regularly updated. A visible roadmap (milestones or GitHub Projects) shows the solution has direction. The issue-triage agent helps maintain backlog hygiene.",
+      "description": "GitHub Issues or Projects used as an active backlog:\n\n\u2022 Issues labeled and triaged within 2 weeks\n\u2022 Milestones or Projects show roadmap\n\u2022 No issues untouched > 90 days\n\nThe issue-triage agent helps maintain hygiene.",
       "agent": "issue-triage.agent.md",
       "agentStatus": "active",
       "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
@@ -257,7 +257,7 @@
       "shortName": "Catalog",
       "name": "Catalog Published",
       "category": "process",
-      "description": "The solution must be published in the dataminer.services Catalog as 'Standard Solution' type with semantic versioning. The main range must be tagged. Regular releases (not just one initial publish) show the solution is actively evolving and supported.",
+      "description": "Published in dataminer.services Catalog as \u2018Standard Solution\u2019:\n\n\u2022 Semantic versioning\n\u2022 Main range tagged\n\u2022 Regular releases\n\nOne-time publishing is not enough \u2014 active release cadence shows the solution is supported.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/user-guide/Cloud_Platform/Catalog/Register_Catalog_Item.html"
