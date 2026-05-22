@@ -1,25 +1,38 @@
-# Catalog Documentation Check - SLC-S-Relationships
+# Catalog Documentation Check -- SLC-S-Relationships
 
-| | |
-|---|---|
-| **Solution** | [Relationships](https://github.com/SkylineCommunications/SLC-S-Relationships) |
-| **Check date** | 2026-05-22 |
-| **Agent** | catalog-doc-checker |
-| **File validated** | `Relationships.Package/CatalogInformation/README.md` |
+**Repository:** [SkylineCommunications/SLC-S-Relationships](https://github.com/SkylineCommunications/SLC-S-Relationships)
+**Check date:** 2026-05-22
+**Agent:** catalog-doc-checker.agent.md
+**Target file:** Relationships.Package/CatalogInformation/README.md
 
----
+## Linked issue / PR
 
-### catalog / documentation-validation
+- No open [Catalog Doc] issue found.
+- Open PR: [#2 docs: improve CatalogInformation README per catalog documentation standards](https://github.com/SkylineCommunications/SLC-S-Relationships/pull/2)
 
-| #  | Check                       | Status                      | Notes |
-|----|-----------------------------|-----------------------------|-------|
-| 1  | README Existence            | Compliant                   | |
-| 2  | About Section               | Non-compliant WARNING       | Describes what the solution does but lacks benefit-oriented language (value to the user, problems solved). Reads more like a feature summary than a value pitch. |
-| 3  | Key Features Section        | Non-compliant ERROR         | Section is entirely absent. This is a required section. |
-| 4  | Use Cases Section           | Non-compliant WARNING       | Present but phrased hypothetically ("opens the door to many possibilities, such as:"). Should use specific, real-world, non-hypothetical scenarios. |
-| 5  | Prerequisites Section       | Non-compliant WARNING       | Missing. Standard Solution with a Standard Data Model dependency likely has DataMiner version requirements that should be documented. |
-| 6  | Technical Reference Section | N/A                         | documentation_url is empty in manifest.yml; no external documentation to link. |
-| 7  | Visuals                     | Compliant                   | |
-| 8  | Contact and Support         | Compliant                   | |
+## catalog / documentation-validation
 
-**Result: 1 error, 3 warnings, 1 N/A**
+| # | Check | Status | Notes |
+|---|-------|--------|-------|
+| 1 | About section -- value-focused, problem/solution framing | Compliant | |
+| 2 | Key Features section (max 5, dedicated heading) | Non-compliant [WARNING] | No ## Key Features section; features listed inline in About |
+| 3 | Use Cases section | Compliant | 3 well-described use cases |
+| 4 | Prerequisites section | N/A | No DMA version constraints found |
+| 5 | Visuals (1-3 images, correctly referenced) | Compliant | Overview.png present and correctly referenced |
+| 6 | No contact details / personal email | Compliant | |
+| 7 | Section structure follows guideline order | Non-compliant [WARNING] | Non-standard ## Overview heading used as image wrapper |
+
+**Result: 0 errors, 2 warnings**
+
+### Improvement suggestions
+
+- [INFO] documentation_url in manifest.yml is empty -- add link once docs are published
+- [INFO] Tag Relationships mirrors solution title -- guidelines say not to use the name as a tag; consider Object Tracking, Topology, or Dependencies
+- [INFO] short_description in manifest largely repeats the About text -- acceptable but could be more concise
+
+## Recommended fixes
+
+1. Add a ## Key Features section between About and Use Cases -- move the two-bullet list from About into it
+2. Remove the ## Overview heading and embed the screenshot directly in About or above Use Cases
+
+> Note: PR #2 may already address these items -- review before creating duplicates.
