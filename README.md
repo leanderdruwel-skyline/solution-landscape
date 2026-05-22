@@ -1,8 +1,6 @@
-# DataMiner Solution API Landscape
+# DataMiner Solution Landscape
 
-This repository maps the **typed API surfaces** exposed by DataMiner solutions — objects available through a compiled API helper (DLL, NuGet devpack, or web API), **not** via raw DOM storage reads.
-
-Solutions that expose data exclusively through DOM are tracked separately; they are not listed here until a typed `I<Module>ApiHelper` is introduced.
+This repository maps DataMiner solution integration surfaces, including **typed APIs** and **DOM storage structures** when no typed API helper exists.
 
 ## Purpose
 
@@ -17,7 +15,7 @@ solutions/
 
 ## Solutions
 
-| Solution | Repository | Typed API Objects | Status |
-|----------|-----------|-------------------|--------|
-| SLC-S-SatOps | [SkylineCommunications/SLC-S-SatOps](https://github.com/SkylineCommunications/SLC-S-SatOps) | — | ⚠️ DOM-only, no typed API yet |
-| SLC-S-InfraOps | [SkylineCommunications/SLC-S-InfraOps](https://github.com/SkylineCommunications/SLC-S-InfraOps) | `Asset`, `AssetClass`, `PowerPort`, `DataPort`, `DeviceType`, `Facility` | ✅ 6 typed API objects via [SLC-SDM-InfraOps](https://github.com/SkylineCommunications/SLC-SDM-InfraOps) |
+| Solution | Repository | Coverage | Status |
+|----------|-----------|----------|--------|
+| SLC-S-SatOps | [SkylineCommunications/SLC-S-SatOps](https://github.com/SkylineCommunications/SLC-S-SatOps) | API scan only | ⚠️ No typed API found; DOM-only storage noted |
+| SLC-S-InfraOps | [SkylineCommunications/SLC-S-InfraOps](https://github.com/SkylineCommunications/SLC-S-InfraOps) | Typed API + DOM storage map | ✅ 6 typed API objects; 4 setup modules mapped (+5 referenced modules) |
