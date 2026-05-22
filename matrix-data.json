@@ -1,616 +1,619 @@
 {
-  "lastUpdated": "2026-05-22",
-  "categories": [
-    {
-      "id": "documentation",
-      "name": "Documentation",
-      "color": "#388bfd"
-    },
-    {
-      "id": "architecture",
-      "name": "Architecture",
-      "color": "#bc8cff"
-    },
-    {
-      "id": "api",
-      "name": "API Surface",
-      "color": "#3fb950"
-    },
-    {
-      "id": "security",
-      "name": "Security",
-      "color": "#f97316"
-    },
-    {
-      "id": "quality",
-      "name": "Quality",
-      "color": "#d29922"
-    },
-    {
-      "id": "ux",
-      "name": "UX & Experience",
-      "color": "#ff7b72"
-    },
-    {
-      "id": "process",
-      "name": "Process",
-      "color": "#79c0ff"
-    }
-  ],
-  "checks": [
-    {
-      "id": "catalog-doc",
-      "shortName": "Catalog Doc",
-      "name": "Catalog Documentation",
-      "category": "documentation",
-      "description": "The storefront of your solution on dataminer.services.\n\nMust include:\n• Clear value proposition\n• Key features (max 5)\n• Use cases\n• Prerequisites (version ranges, not pinned)\n• 1–3 screenshots\n\nContact details and personal email are forbidden.",
-      "agent": "catalog-doc-checker.agent.md",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "Best Practices: Documenting Catalog Items",
-          "url": "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Best_Practices_When_Documenting_Catalog_Items.html"
-        }
-      ]
-    },
-    {
-      "id": "readme-doc",
-      "shortName": "README",
-      "name": "Source README",
-      "category": "documentation",
-      "description": "Developer-oriented README at the repository root.\n\nMust cover:\n• Architecture overview\n• Getting started\n• Project structure\n• Contribution guide\n\nDistinct from the Catalog README — targets contributors and integrators, not end users.",
-      "agent": "readme-writer.agent.md",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "GitHub Guidelines: README",
-          "url": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html?q=readme#adding-a-readme-file"
-        }
-      ]
-    },
-    {
-      "id": "release-notes",
-      "shortName": "RN",
-      "name": "Release Notes",
-      "category": "documentation",
-      "description": "Every release must have release notes in plain language.\n\nNotes should describe what changed and why it matters — not just a list of commits or ticket numbers.\n\nWritten for non-technical audiences.",
-      "agent": "rn-write.agent.md",
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "Release Notes Guidelines",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/Administration/release-notes.html"
-        }
-      ]
-    },
-    {
-      "id": "storage-objects",
-      "shortName": "Storage",
-      "name": "Storage / DOM Objects",
-      "category": "architecture",
-      "description": "DOM modules must be properly scoped — and no solution may directly access a DOM module owned by another solution.\n\n• Use [SdmDomStorage] + [GenerateExposers]\n• Module IDs namespaced to solution\n  (e.g. infraops/assets, not just assets)\n• Storage mappers (*.g.cs) committed\n• Cross-solution data flows through the owning solution’s typed IApiHelper — never via direct DomHelper",
-      "agent": "solution-storage-mapper.agent.md",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "Strict Data Encapsulation",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#strict-data-encapsulation"
-        },
-        {
-          "label": "Tier 1 — Data Layer",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#321-tier-1--data-layer-the-memory"
-        }
-      ]
-    },
-    {
-      "id": "sdm-compliance",
-      "shortName": "SDM",
-      "name": "SDM Compliance",
-      "category": "architecture",
-      "description": "Standard Data Model (SDM) — 3-tier architecture:\n\n• T1 Foundational: SdmObject<T> models + repository storage\n• T2 Encapsulated: IApiHelper interface accepting IConnection\n• T3 Federated: registered via SdmRegistrar\n\nAll tiers must pass. This is an existing architecture standard.",
-      "agent": "sdm-compliance-checker.agent.md",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "Autonomy by Design",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#autonomy-by-design"
-        },
-        {
-          "label": "Tier 2 — Logic Layer",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#322-tier-2--logic-layer-the-brain"
-        },
-        {
-          "label": "Tier 1 — Data Layer",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#321-tier-1--data-layer-the-memory"
-        }
-      ]
-    },
-    {
-      "id": "inter-solution-refs",
-      "shortName": "Solution Deps",
-      "name": "Inter-Solution References",
-      "category": "architecture",
-      "description": "Cross-solution dependencies must flow through typed NuGet API helpers — never direct DOM access.\n\n• Declare consumed SDM packages in Directory.Packages.props\n• Dependency graph documented and free of cycles\n\nThis is the natural outcome of SDM T3 compliance, not a new requirement.",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "Cross-Solution Data Access",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#33-cross-solution-data-access"
-        }
-      ]
-    },
-    {
-      "id": "typed-api",
-      "shortName": "Typed API",
-      "name": "Typed API Objects",
-      "category": "api",
-      "description": "The solution exposes an IApiHelper interface with typed repository properties — one per domain object.\n\n• IBulkRepository<T> or IObservableRepository<T>\n• Consumers work with typed objects without touching DOM directly\n\nThis is SDM T2 compliance at the API surface level.",
-      "agent": "solution-api-surface-mapper.agent.md",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "AI and UI Ready by Default",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#ai-and-ui-ready-by-default"
-        },
-        {
-          "label": "Tier 3 — Presentation Layer",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#323-tier-3--presentation-layer-the-voice"
-        }
-      ]
-    },
-    {
-      "id": "gqi-udapi",
-      "shortName": "GQI/UDAPI",
-      "name": "GQI & User-Defined APIs",
-      "category": "api",
-      "description": "Full external consumability requires both:\n\n• GQI ad-hoc data sources — expose objects to dashboards and low-code apps\n• UDAPI endpoints — expose objects to external HTTP clients and AI agents",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "AI and UI Ready by Default",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#ai-and-ui-ready-by-default"
-        }
-      ]
-    },
-    {
-      "id": "devpack",
-      "shortName": "Devpack",
-      "name": "NuGet Devpack Published",
-      "category": "api",
-      "description": "The solution’s typed API helper (IApiHelper + models) must be published as a NuGet package.\n\nPublish to the internal Skyline feed so other solutions can take a typed dependency without referencing source code.\n\nWithout a devpack, cross-solution consumption requires code duplication.",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "Available Options",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#42-available-options"
-        }
-      ]
-    },
-    {
-      "id": "component-privacy",
-      "shortName": "Privacy",
-      "name": "Component Privacy",
-      "category": "security",
-      "description": "Only the main solution package may be public in the Catalog.\n\nMark all sub-components private in manifest.yml:\n  registrationOptions:\n    isHidden: true\n\nAffects: individual scripts, add-ons, demo data, internal installers.\n\nSub-components appearing publicly clutter the Catalog.",
-      "agent": "component-privacy-checker.agent.md",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "Register Catalog Item — Manifest",
-          "url": "https://docs.dataminer.services/dataminer/dataminer_services/Catalog/Register_Catalog_Item.html#manifest-file"
-        },
-        {
-          "label": "Best Practices: Creating Catalog Items",
-          "url": "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Best_Practices_When_Creating_Catalog_Items.html"
-        }
-      ]
-    },
-    {
-      "id": "naming-convention",
-      "shortName": "Naming",
-      "name": "Naming Convention",
-      "category": "quality",
-      "description": "All components follow Skyline naming conventions:\n\n• Automation scripts: SOLCODE-TYPE-name (hyphen)\n• Apps, dashboards, elements: SOLCODE name (space)\n\nSOLCODE is a 3-letter uppercase code unique to the solution.\n\nThis is an existing published guideline.",
-      "agent": "naming-convention-check.agent.md",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "Naming Conventions for Catalog Item Components",
-          "url": "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Naming_Conventions_For_Catalog_Item_Components.html"
-        }
-      ]
-    },
-    {
-      "id": "tests",
-      "shortName": "Tests",
-      "name": "Automated Tests",
-      "category": "quality",
-      "description": "Unit tests must cover core business logic:\n\n• Use DomConnectionMock or repository stubs\n• Run offline — no live DataMiner system needed\n• CI runs tests on every PR\n\nFast, reliable feedback without infrastructure.",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "GitHub Guidelines",
-          "url": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
-        }
-      ]
-    },
-    {
-      "id": "ci-cd",
-      "shortName": "CI/CD",
-      "name": "CI/CD Pipeline",
-      "category": "quality",
-      "description": "GitHub Actions pipeline must:\n\n• Build on every PR\n• Run all tests automatically\n• Publish NuGet / DataMiner package on release tag\n\nMain branch must be green. Standard Skyline GitHub guideline.",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "GitHub Guidelines",
-          "url": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
-        }
-      ]
-    },
-    {
-      "id": "dependency-health",
-      "shortName": "Deps",
-      "name": "Dependency Health",
-      "category": "quality",
-      "description": "Keep NuGet dependencies healthy:\n\n• No deprecated packages\n• All packages up to date\n• Consistent SDM package versions across solutions that interact\n\nVersion drift between solutions causes runtime conflicts.",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "SDM Interoperability Guidelines",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html"
-        }
-      ]
-    },
-    {
-      "id": "health-freshness",
-      "shortName": "Freshness",
-      "name": "Health & Freshness",
-      "category": "quality",
-      "description": "Signs of a healthy, maintained solution:\n\n• Commits within the last 3 months\n• Green CI pipeline\n• Low open-issue count\n• Regular releases\n\nAll data sourced from the GitHub API.",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "GitHub Guidelines",
-          "url": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
-        }
-      ]
-    },
-    {
-      "id": "low-code-app",
-      "shortName": "LCA",
-      "name": "Low-Code App",
-      "category": "ux",
-      "description": "A DataMiner low-code app must be present and functional.\n\n• Named after the solution (SOLNAME)\n• Operators can use it without training\n• Clear navigation, consistent layout\n• Follows DataMiner style guide",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "Low-Code App Style Guide",
-          "url": "https://docs.dataminer.services/dataminer/Functions/Dashboards_and_Low_Code_Apps/Low_Code_Apps/Style_guide.html"
-        }
-      ]
-    },
-    {
-      "id": "demo-mode",
-      "shortName": "Demo",
-      "name": "Demo / Mock Mode",
-      "category": "ux",
-      "description": "Mock data injected through the typed API to evaluate the solution without a live system.\n\n• Covers typical use cases\n• Toggled via API — not hardcoded in scripts\n\nCurrently the highest-value gap across all solutions.",
-      "agent": null,
-      "agentStatus": "planned"
-    },
-    {
-      "id": "ux-audit",
-      "shortName": "UX Audit",
-      "name": "LCA UX Audit",
-      "category": "ux",
-      "description": "The DataMiner low-code app must pass a full UX audit:\n\n• DataMiner style guide compliance\n• Consistent spacing and typography\n• Proper status chips\n• Empty states and loading indicators\n\nRun the dataminer-ux-audit agent for a scored report.",
-      "agent": "dataminer-ux-audit",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "Low-Code App Style Guide",
-          "url": "https://docs.dataminer.services/dataminer/Functions/Dashboards_and_Low_Code_Apps/Low_Code_Apps/Style_guide.html"
-        }
-      ]
-    },
-    {
-      "id": "product-owner",
-      "shortName": "PO",
-      "name": "Product Owner",
-      "category": "process",
-      "description": "A named Product Owner identified in .github/CODEOWNERS.\n\nThe PO is accountable for:\n• Roadmap\n• Backlog\n• Release decisions\n\nNot just technical delivery — clear product ownership per Skyline practice.",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "PO Expectations",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/guidelines.html#expectations-3"
-        }
-      ]
-    },
-    {
-      "id": "active-backlog",
-      "shortName": "Backlog",
-      "name": "Active Backlog",
-      "category": "process",
-      "description": "GitHub Issues or Projects used as an active backlog:\n\n• Issues labeled and triaged within 2 weeks\n• Milestones or Projects show roadmap\n• No issues untouched > 90 days\n\nThe issue-triage agent helps maintain hygiene.",
-      "agent": "issue-triage.agent.md",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "GitHub Guidelines",
-          "url": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
-        }
-      ]
-    },
-    {
-      "id": "catalog-published",
-      "shortName": "Catalog",
-      "name": "Catalog Published",
-      "category": "process",
-      "description": "Published in dataminer.services Catalog as ‘Standard Solution’:\n\n• Semantic versioning\n• Main range tagged\n• Regular releases\n\nOne-time publishing is not enough — active release cadence shows the solution is supported.",
-      "agent": null,
-      "agentStatus": "planned",
-      "docUrls": [
-        {
-          "label": "Best Practices: Creating Catalog Items",
-          "url": "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Best_Practices_When_Creating_Catalog_Items.html"
-        }
-      ]
-    }
-  ],
-  "solutions": [
-    {
-      "id": "SLC-S-InfraOps",
-      "name": "InfraOps",
-      "repo": "SkylineCommunications/SLC-S-InfraOps",
-      "checks": {
-        "catalog-doc": {
-          "status": "partial",
-          "note": "Open PR exists; README is missing Use Cases and uses a non-standard Pricing heading; other checks pass.",
-          "updatedAt": "2026-05-22",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/catalog-doc.md",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/63",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/64"
-        },
-        "typed-api": {
-          "status": "pass",
-          "note": "7 objects: Tickets, TicketTypes, Attachments, AffectedResources, Notes, ExternalOwners (ITicketingApiHelper) + ObjectLinker",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps.md",
-          "updatedAt": "2026-05-22"
-        },
-        "naming-convention": {
-          "status": "fail",
-          "note": "192/199 Automation scripts missing SLC-[TYPE]-[name] pattern. Low-code apps not named InfraOps.",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/74",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/naming-convention.md",
-          "updatedAt": "2026-05-22"
-        },
-        "component-privacy": {
-          "status": "fail",
-          "note": "6 sub-packages (WithDependencies, Vodafone-AddOns, RT, Demo-Data, CleanSystem, FieldOperations-AddOns) publicly visible, should be private.",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/73",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/component-privacy.md",
-          "updatedAt": "2026-05-22"
-        },
-        "readme-doc": {
-          "status": "partial",
-          "note": "Open README PR exists; current root README is catalog-oriented and lacks architecture, structure, getting started, and contribution guidance.",
-          "updatedAt": "2026-05-22",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/readme-doc.md",
-          "issueUrl": null,
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/66"
-        },
-        "sdm-compliance": {
-          "status": "fail",
-          "note": "Tier 3 registration exists, but no SdmObject/SdmDomStorage/GenerateExposers storage layer or IApiHelper interface was found; direct DomHelper access to the cost_billing module violates encapsulation.",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/sdm-compliance.md",
-          "issueUrl": null,
-          "prUrl": null,
-          "updatedAt": "2026-05-22"
-        },
-        "storage-objects": {
-          "status": "fail",
-          "note": "DOM is handled through custom DomHelper wrappers, module IDs are not infraops/* scoped, no *.g.cs mappers were found, and the cost_billing module is accessed directly.",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/storage-objects.md",
-          "issueUrl": null,
-          "prUrl": null,
-          "updatedAt": "2026-05-22"
-        }
-      },
-      "results": {
-        "catalog-doc": {
-          "status": "partial",
-          "summary": "Open PR exists; README is missing Use Cases and uses a non-standard Pricing heading; other checks pass.",
-          "checkedAt": "2026-05-22T14:14:47Z",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/catalog-doc.md",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/63",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/64"
-        },
-        "readme-doc": {
-          "status": "partial",
-          "summary": "Open README PR exists; current root README is catalog-oriented and lacks architecture, structure, getting started, and contribution guidance.",
-          "checkedAt": "2026-05-22T14:16:17.6347243Z",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/readme-doc.md",
-          "issueUrl": null,
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/66"
-        },
-        "sdm-compliance": {
-          "status": "fail",
-          "summary": "Fail: Tier 3 registration exists, but Tier 1 SDM storage and Tier 2 IApiHelper abstraction are missing, and direct cross-solution DOM access to cost_billing was found.",
-          "checkedAt": "2026-05-22",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/sdm-compliance.md",
-          "issueUrl": null,
-          "prUrl": null
-        },
-        "storage-objects": {
-          "status": "fail",
-          "summary": "Fail: InfraOps uses direct DomHelper-based DOM wrappers instead of SDM storage objects; no SdmDomStorage/GenerateExposers models or *.g.cs mappers were found, and cost_billing is accessed directly.",
-          "checkedAt": "2026-05-22",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/storage-objects.md",
-          "issueUrl": null,
-          "prUrl": null
-        }
-      }
-    },
-    {
-      "id": "SLC-S-MediaOps.Plan",
-      "name": "MediaOps Plan",
-      "repo": "SkylineCommunications/SLC-S-MediaOps.Plan",
-      "checks": {
-        "catalog-doc": {
-          "status": "partial",
-          "note": "Removed email, rewrote About/Key Features, added Use Cases, trimmed to 3 images",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-MediaOps.Plan/issues/436",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-MediaOps.Plan/pull/438",
-          "updatedAt": "2026-05-22"
-        }
-      }
-    },
-    {
-      "id": "SLC-S-MediaOps.Live",
-      "name": "MediaOps Live",
-      "repo": "SkylineCommunications/SLC-S-MediaOps.Live",
-      "checks": {
-        "catalog-doc": {
-          "status": "partial",
-          "note": "Value-focused About, Key Features, Use Cases added",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-MediaOps.Live/issues/84",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-MediaOps.Live/pull/85",
-          "updatedAt": "2026-05-22"
-        }
-      }
-    },
-    {
-      "id": "SLC-S-SatOps",
-      "name": "SatOps",
-      "repo": "SkylineCommunications/SLC-S-SatOps",
-      "checks": {
-        "catalog-doc": {
-          "status": "partial",
-          "note": "Rewritten README with catalog doc fixes",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-SatOps/issues/22",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-SatOps/pull/23",
-          "updatedAt": "2026-05-22"
-        },
-        "typed-api": {
-          "status": "fail",
-          "note": "No IXxxApiHelper found. DOM-only (satellite-management, antenna-management). No typed API surface yet.",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-SatOps.md",
-          "updatedAt": "2026-05-22"
-        },
-        "storage-objects": {
-          "status": "partial",
-          "note": "DOM modules present (Satellite, Transponder, Beam, Slot, EarthStation, AntennaÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦) but SdmDomStorage/GenerateExposers attributes not confirmed",
-          "updatedAt": "2026-05-22"
-        }
-      }
-    },
-    {
-      "id": "SLC-S-Ticketing",
-      "name": "Ticketing",
-      "repo": "SkylineCommunications/SLC-S-Ticketing",
-      "checks": {
-        "catalog-doc": {
-          "status": "partial",
-          "note": "Rewritten README: About/Key Features/Use Cases improvements",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-Ticketing/issues/16",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-Ticketing/pull/17",
-          "updatedAt": "2026-05-22"
-        },
-        "sdm-compliance": {
-          "status": "partial",
-          "note": "T2-1: missing IPeopleAndOrganizationsApiHelper; T3-3: SDM registration incomplete. PRs raised.",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-Ticketing/issues/12",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-Ticketing/pull/14",
-          "updatedAt": "2026-05-22"
-        }
-      }
-    },
-    {
-      "id": "SLC-S-IpNetworkExplorer",
-      "name": "IP Network Explorer",
-      "repo": "SkylineCommunications/SLC-S-IpNetworkExplorer",
-      "checks": {
-        "catalog-doc": {
-          "status": "partial",
-          "note": "Rewrote About/Key Features/Use Cases, fixed image paths (~/images/ ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ ./Images/), restored Supported Equipment section",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-IpNetworkExplorer/issues/8",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-IpNetworkExplorer/pull/9",
-          "updatedAt": "2026-05-22"
-        }
-      }
-    },
-    {
-      "id": "SLC-S-DocumentHub",
-      "name": "DocumentHub",
-      "repo": "SkylineCommunications/SLC-S-DocumentHub",
-      "checks": {
-        "catalog-doc": {
-          "status": "partial",
-          "note": "Rewrote About, Key Features, added Use Cases, trimmed to 3 images, Prerequisites note",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-DocumentHub/issues/7",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-DocumentHub/pull/8",
-          "updatedAt": "2026-05-22"
-        }
-      }
-    },
-    {
-      "id": "SLC-S-Service-Management",
-      "name": "Service Management",
-      "repo": "SkylineCommunications/SLC-S-Service-Management",
-      "checks": {
-        "catalog-doc": {
-          "status": "fail",
-          "note": "CatalogInformation/README.md was entirely missing ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â created from scratch in PR. Needs review.",
-          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-Service-Management/issues/66",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-Service-Management/pull/67",
-          "updatedAt": "2026-05-22"
-        }
-      }
-    },
-    {
-      "id": "SLC-S-FleetOps",
-      "name": "FleetOps",
-      "repo": "SkylineCommunications/SLC-S-FleetOps",
-      "checks": {
-        "catalog-doc": {
-          "status": "partial",
-          "note": "5 warnings: 6 Key Features (max 5), no Use Cases, no Prerequisites, placeholder visual, About needs bold text",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-FleetOps/catalog-doc.md",
-          "updatedAt": "2026-05-22"
-        }
-      }
-    },
-    {
-      "id": "SLC-S-Relationships",
-      "name": "Relationships",
-      "repo": "SkylineCommunications/SLC-S-Relationships",
-      "checks": {
-        "catalog-doc": {
-          "status": "partial",
-          "note": "No Key Features section; Overview heading non-standard. PR #2 open with improvements.",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-Relationships/pull/2",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-Relationships/catalog-doc.md",
-          "updatedAt": "2026-05-22"
-        },
-        "readme-doc": {
-          "status": "partial",
-          "note": "5 errors incl. personal email + missing project READMEs. PR #3 open with fixes.",
-          "prUrl": "https://github.com/SkylineCommunications/SLC-S-Relationships/pull/3",
-          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-Relationships/readme-doc.md",
-          "updatedAt": "2026-05-22"
-        }
-      }
-    }
-  ]
+    "lastUpdated":  "2026-05-22",
+    "categories":  [
+                       {
+                           "id":  "documentation",
+                           "name":  "Documentation",
+                           "color":  "#388bfd"
+                       },
+                       {
+                           "id":  "architecture",
+                           "name":  "Architecture",
+                           "color":  "#bc8cff"
+                       },
+                       {
+                           "id":  "api",
+                           "name":  "API Surface",
+                           "color":  "#3fb950"
+                       },
+                       {
+                           "id":  "security",
+                           "name":  "Security",
+                           "color":  "#f97316"
+                       },
+                       {
+                           "id":  "quality",
+                           "name":  "Quality",
+                           "color":  "#d29922"
+                       },
+                       {
+                           "id":  "ux",
+                           "name":  "UX \u0026 Experience",
+                           "color":  "#ff7b72"
+                       },
+                       {
+                           "id":  "process",
+                           "name":  "Process",
+                           "color":  "#79c0ff"
+                       }
+                   ],
+    "checks":  [
+                   {
+                       "id":  "catalog-doc",
+                       "shortName":  "Catalog Doc",
+                       "name":  "Catalog Documentation",
+                       "category":  "documentation",
+                       "description":  "The storefront of your solution on dataminer.services.\n\nMust include:\n• Clear value proposition\n• Key features (max 5)\n• Use cases\n• Prerequisites (version ranges, not pinned)\n• 1–3 screenshots\n\nContact details and personal email are forbidden.",
+                       "agent":  "catalog-doc-checker.agent.md",
+                       "agentStatus":  "active",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Best Practices: Documenting Catalog Items",
+                                           "url":  "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Best_Practices_When_Documenting_Catalog_Items.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "readme-doc",
+                       "shortName":  "README",
+                       "name":  "Source README",
+                       "category":  "documentation",
+                       "description":  "Developer-oriented README at the repository root.\n\nMust cover:\n• Architecture overview\n• Getting started\n• Project structure\n• Contribution guide\n\nDistinct from the Catalog README — targets contributors and integrators, not end users.",
+                       "agent":  "readme-writer.agent.md",
+                       "agentStatus":  "active",
+                       "docUrls":  [
+                                       {
+                                           "label":  "GitHub Guidelines: README",
+                                           "url":  "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html?q=readme#adding-a-readme-file"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "release-notes",
+                       "shortName":  "RN",
+                       "name":  "Release Notes",
+                       "category":  "documentation",
+                       "description":  "Every release must have release notes in plain language.\n\nNotes should describe what changed and why it matters — not just a list of commits or ticket numbers.\n\nWritten for non-technical audiences.",
+                       "agent":  "rn-write.agent.md",
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Release Notes Guidelines",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/Administration/release-notes.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "storage-objects",
+                       "shortName":  "Storage",
+                       "name":  "Storage / DOM Objects",
+                       "category":  "architecture",
+                       "description":  "DOM modules must be properly scoped — and no solution may directly access a DOM module owned by another solution.\n\n• Use [SdmDomStorage] + [GenerateExposers]\n• Module IDs namespaced to solution\n  (e.g. infraops/assets, not just assets)\n• Storage mappers (*.g.cs) committed\n• Cross-solution data flows through the owning solution’s typed IApiHelper — never via direct DomHelper",
+                       "agent":  "solution-storage-mapper.agent.md",
+                       "agentStatus":  "active",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Strict Data Encapsulation",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#strict-data-encapsulation"
+                                       },
+                                       {
+                                           "label":  "Tier 1 — Data Layer",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#321-tier-1--data-layer-the-memory"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "sdm-compliance",
+                       "shortName":  "SDM",
+                       "name":  "SDM Compliance",
+                       "category":  "architecture",
+                       "description":  "Standard Data Model (SDM) — 3-tier architecture:\n\n• T1 Foundational: SdmObject\u003cT\u003e models + repository storage\n• T2 Encapsulated: IApiHelper interface accepting IConnection\n• T3 Federated: registered via SdmRegistrar\n\nAll tiers must pass. This is an existing architecture standard.",
+                       "agent":  "sdm-compliance-checker.agent.md",
+                       "agentStatus":  "active",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Autonomy by Design",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#autonomy-by-design"
+                                       },
+                                       {
+                                           "label":  "Tier 2 — Logic Layer",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#322-tier-2--logic-layer-the-brain"
+                                       },
+                                       {
+                                           "label":  "Tier 1 — Data Layer",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#321-tier-1--data-layer-the-memory"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "inter-solution-refs",
+                       "shortName":  "Solution Deps",
+                       "name":  "Inter-Solution References",
+                       "category":  "architecture",
+                       "description":  "Cross-solution dependencies must flow through typed NuGet API helpers — never direct DOM access.\n\n• Declare consumed SDM packages in Directory.Packages.props\n• Dependency graph documented and free of cycles\n\nThis is the natural outcome of SDM T3 compliance, not a new requirement.",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Cross-Solution Data Access",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#33-cross-solution-data-access"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "typed-api",
+                       "shortName":  "Typed API",
+                       "name":  "Typed API Objects",
+                       "category":  "api",
+                       "description":  "The solution exposes an IApiHelper interface with typed repository properties — one per domain object.\n\n• IBulkRepository\u003cT\u003e or IObservableRepository\u003cT\u003e\n• Consumers work with typed objects without touching DOM directly\n\nThis is SDM T2 compliance at the API surface level.",
+                       "agent":  "solution-api-surface-mapper.agent.md",
+                       "agentStatus":  "active",
+                       "docUrls":  [
+                                       {
+                                           "label":  "AI and UI Ready by Default",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#ai-and-ui-ready-by-default"
+                                       },
+                                       {
+                                           "label":  "Tier 3 — Presentation Layer",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#323-tier-3--presentation-layer-the-voice"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "gqi-udapi",
+                       "shortName":  "GQI/UDAPI",
+                       "name":  "GQI \u0026 User-Defined APIs",
+                       "category":  "api",
+                       "description":  "Full external consumability requires both:\n\n• GQI ad-hoc data sources — expose objects to dashboards and low-code apps\n• UDAPI endpoints — expose objects to external HTTP clients and AI agents",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "AI and UI Ready by Default",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#ai-and-ui-ready-by-default"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "devpack",
+                       "shortName":  "Devpack",
+                       "name":  "NuGet Devpack Published",
+                       "category":  "api",
+                       "description":  "The solution’s typed API helper (IApiHelper + models) must be published as a NuGet package.\n\nPublish to the internal Skyline feed so other solutions can take a typed dependency without referencing source code.\n\nWithout a devpack, cross-solution consumption requires code duplication.",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Available Options",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#42-available-options"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "component-privacy",
+                       "shortName":  "Privacy",
+                       "name":  "Component Privacy",
+                       "category":  "security",
+                       "description":  "Only the main solution package may be public in the Catalog.\n\nMark all sub-components private in manifest.yml:\n  registrationOptions:\n    isHidden: true\n\nAffects: individual scripts, add-ons, demo data, internal installers.\n\nSub-components appearing publicly clutter the Catalog.",
+                       "agent":  "component-privacy-checker.agent.md",
+                       "agentStatus":  "active",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Register Catalog Item — Manifest",
+                                           "url":  "https://docs.dataminer.services/dataminer/dataminer_services/Catalog/Register_Catalog_Item.html#manifest-file"
+                                       },
+                                       {
+                                           "label":  "Best Practices: Creating Catalog Items",
+                                           "url":  "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Best_Practices_When_Creating_Catalog_Items.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "naming-convention",
+                       "shortName":  "Naming",
+                       "name":  "Naming Convention",
+                       "category":  "quality",
+                       "description":  "All components follow Skyline naming conventions:\n\n• Automation scripts: SOLCODE-TYPE-name (hyphen)\n• Apps, dashboards, elements: SOLCODE name (space)\n\nSOLCODE is a 3-letter uppercase code unique to the solution.\n\nThis is an existing published guideline.",
+                       "agent":  "naming-convention-check.agent.md",
+                       "agentStatus":  "active",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Naming Conventions for Catalog Item Components",
+                                           "url":  "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Naming_Conventions_For_Catalog_Item_Components.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "tests",
+                       "shortName":  "Tests",
+                       "name":  "Automated Tests",
+                       "category":  "quality",
+                       "description":  "Unit tests must cover core business logic:\n\n• Use DomConnectionMock or repository stubs\n• Run offline — no live DataMiner system needed\n• CI runs tests on every PR\n\nFast, reliable feedback without infrastructure.",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "GitHub Guidelines",
+                                           "url":  "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "ci-cd",
+                       "shortName":  "CI/CD",
+                       "name":  "CI/CD Pipeline",
+                       "category":  "quality",
+                       "description":  "GitHub Actions pipeline must:\n\n• Build on every PR\n• Run all tests automatically\n• Publish NuGet / DataMiner package on release tag\n\nMain branch must be green. Standard Skyline GitHub guideline.",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "GitHub Guidelines",
+                                           "url":  "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "dependency-health",
+                       "shortName":  "Deps",
+                       "name":  "Dependency Health",
+                       "category":  "quality",
+                       "description":  "Keep NuGet dependencies healthy:\n\n• No deprecated packages\n• All packages up to date\n• Consistent SDM package versions across solutions that interact\n\nVersion drift between solutions causes runtime conflicts.",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "SDM Interoperability Guidelines",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "health-freshness",
+                       "shortName":  "Freshness",
+                       "name":  "Health \u0026 Freshness",
+                       "category":  "quality",
+                       "description":  "Signs of a healthy, maintained solution:\n\n• Commits within the last 3 months\n• Green CI pipeline\n• Low open-issue count\n• Regular releases\n\nAll data sourced from the GitHub API.",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "GitHub Guidelines",
+                                           "url":  "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "low-code-app",
+                       "shortName":  "LCA",
+                       "name":  "Low-Code App",
+                       "category":  "ux",
+                       "description":  "A DataMiner low-code app must be present and functional.\n\n• Named after the solution (SOLNAME)\n• Operators can use it without training\n• Clear navigation, consistent layout\n• Follows DataMiner style guide",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Low-Code App Style Guide",
+                                           "url":  "https://docs.dataminer.services/dataminer/Functions/Dashboards_and_Low_Code_Apps/Low_Code_Apps/Style_guide.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "demo-mode",
+                       "shortName":  "Demo",
+                       "name":  "Demo / Mock Mode",
+                       "category":  "ux",
+                       "description":  "Mock data injected through the typed API to evaluate the solution without a live system.\n\n• Covers typical use cases\n• Toggled via API — not hardcoded in scripts\n\nCurrently the highest-value gap across all solutions.",
+                       "agent":  null,
+                       "agentStatus":  "planned"
+                   },
+                   {
+                       "id":  "ux-audit",
+                       "shortName":  "UX Audit",
+                       "name":  "LCA UX Audit",
+                       "category":  "ux",
+                       "description":  "The DataMiner low-code app must pass a full UX audit:\n\n• DataMiner style guide compliance\n• Consistent spacing and typography\n• Proper status chips\n• Empty states and loading indicators\n\nRun the dataminer-ux-audit agent for a scored report.",
+                       "agent":  "dataminer-ux-audit",
+                       "agentStatus":  "active",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Low-Code App Style Guide",
+                                           "url":  "https://docs.dataminer.services/dataminer/Functions/Dashboards_and_Low_Code_Apps/Low_Code_Apps/Style_guide.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "product-owner",
+                       "shortName":  "PO",
+                       "name":  "Product Owner",
+                       "category":  "process",
+                       "description":  "A named Product Owner identified in .github/CODEOWNERS.\n\nThe PO is accountable for:\n• Roadmap\n• Backlog\n• Release decisions\n\nNot just technical delivery — clear product ownership per Skyline practice.",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "PO Expectations",
+                                           "url":  "https://internaldocs.skyline.be/Solutions/Guidelines/guidelines.html#expectations-3"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "active-backlog",
+                       "shortName":  "Backlog",
+                       "name":  "Active Backlog",
+                       "category":  "process",
+                       "description":  "GitHub Issues or Projects used as an active backlog:\n\n• Issues labeled and triaged within 2 weeks\n• Milestones or Projects show roadmap\n• No issues untouched \u003e 90 days\n\nThe issue-triage agent helps maintain hygiene.",
+                       "agent":  "issue-triage.agent.md",
+                       "agentStatus":  "active",
+                       "docUrls":  [
+                                       {
+                                           "label":  "GitHub Guidelines",
+                                           "url":  "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
+                                       }
+                                   ]
+                   },
+                   {
+                       "id":  "catalog-published",
+                       "shortName":  "Catalog",
+                       "name":  "Catalog Published",
+                       "category":  "process",
+                       "description":  "Published in dataminer.services Catalog as ‘Standard Solution’:\n\n• Semantic versioning\n• Main range tagged\n• Regular releases\n\nOne-time publishing is not enough — active release cadence shows the solution is supported.",
+                       "agent":  null,
+                       "agentStatus":  "planned",
+                       "docUrls":  [
+                                       {
+                                           "label":  "Best Practices: Creating Catalog Items",
+                                           "url":  "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Best_Practices_When_Creating_Catalog_Items.html"
+                                       }
+                                   ]
+                   }
+               ],
+    "solutions":  [
+                      {
+                          "id":  "SLC-S-InfraOps",
+                          "name":  "InfraOps",
+                          "repo":  "SkylineCommunications/SLC-S-InfraOps",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "Open PR exists; README is missing Use Cases and uses a non-standard Pricing heading; other checks pass.",
+                                                             "updatedAt":  "2026-05-22",
+                                                             "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/catalog-doc.md",
+                                                             "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/63",
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/64"
+                                                         },
+                                         "typed-api":  {
+                                                           "status":  "pass",
+                                                           "note":  "7 objects: Tickets, TicketTypes, Attachments, AffectedResources, Notes, ExternalOwners (ITicketingApiHelper) + ObjectLinker",
+                                                           "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps.md",
+                                                           "updatedAt":  "2026-05-22"
+                                                       },
+                                         "naming-convention":  {
+                                                                   "status":  "fail",
+                                                                   "note":  "192/199 Automation scripts missing SLC-[TYPE]-[name] pattern. Low-code apps not named InfraOps.",
+                                                                   "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/74",
+                                                                   "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/naming-convention.md",
+                                                                   "updatedAt":  "2026-05-22"
+                                                               },
+                                         "component-privacy":  {
+                                                                   "status":  "partial",
+                                                                   "summary":  "6 sub-component manifests lack isHidden: true; repo is private; keyword-matching PR exists.",
+                                                                   "note":  "6 sub-component manifests lack isHidden: true; repo is private; keyword-matching PR exists.",
+                                                                   "checkedAt":  "2026-05-22",
+                                                                   "updatedAt":  "2026-05-22",
+                                                                   "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/component-privacy.md",
+                                                                   "issueUrl":  null,
+                                                                   "prUrl":  null
+                                                               },
+                                         "readme-doc":  {
+                                                            "status":  "partial",
+                                                            "note":  "Open README PR exists; current root README is catalog-oriented and lacks architecture, structure, getting started, and contribution guidance.",
+                                                            "updatedAt":  "2026-05-22",
+                                                            "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/readme-doc.md",
+                                                            "issueUrl":  null,
+                                                            "prUrl":  "https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/66"
+                                                        },
+                                         "sdm-compliance":  {
+                                                                "status":  "fail",
+                                                                "note":  "Tier 3 registration exists, but no SdmObject/SdmDomStorage/GenerateExposers storage layer or IApiHelper interface was found; direct DomHelper access to the cost_billing module violates encapsulation.",
+                                                                "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/sdm-compliance.md",
+                                                                "issueUrl":  null,
+                                                                "prUrl":  null,
+                                                                "updatedAt":  "2026-05-22"
+                                                            },
+                                         "storage-objects":  {
+                                                                 "status":  "fail",
+                                                                 "note":  "DOM is handled through custom DomHelper wrappers, module IDs are not infraops/* scoped, no *.g.cs mappers were found, and the cost_billing module is accessed directly.",
+                                                                 "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/storage-objects.md",
+                                                                 "issueUrl":  null,
+                                                                 "prUrl":  null,
+                                                                 "updatedAt":  "2026-05-22"
+                                                             }
+                                     },
+                          "results":  {
+                                          "catalog-doc":  {
+                                                              "status":  "partial",
+                                                              "summary":  "Open PR exists; README is missing Use Cases and uses a non-standard Pricing heading; other checks pass.",
+                                                              "checkedAt":  "2026-05-22T14:14:47Z",
+                                                              "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/catalog-doc.md",
+                                                              "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/63",
+                                                              "prUrl":  "https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/64"
+                                                          },
+                                          "readme-doc":  {
+                                                             "status":  "partial",
+                                                             "summary":  "Open README PR exists; current root README is catalog-oriented and lacks architecture, structure, getting started, and contribution guidance.",
+                                                             "checkedAt":  "2026-05-22T14:16:17.6347243Z",
+                                                             "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/readme-doc.md",
+                                                             "issueUrl":  null,
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/66"
+                                                         },
+                                          "sdm-compliance":  {
+                                                                 "status":  "fail",
+                                                                 "summary":  "Fail: Tier 3 registration exists, but Tier 1 SDM storage and Tier 2 IApiHelper abstraction are missing, and direct cross-solution DOM access to cost_billing was found.",
+                                                                 "checkedAt":  "2026-05-22",
+                                                                 "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/sdm-compliance.md",
+                                                                 "issueUrl":  null,
+                                                                 "prUrl":  null
+                                                             },
+                                          "storage-objects":  {
+                                                                  "status":  "fail",
+                                                                  "summary":  "Fail: InfraOps uses direct DomHelper-based DOM wrappers instead of SDM storage objects; no SdmDomStorage/GenerateExposers models or *.g.cs mappers were found, and cost_billing is accessed directly.",
+                                                                  "checkedAt":  "2026-05-22",
+                                                                  "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/storage-objects.md",
+                                                                  "issueUrl":  null,
+                                                                  "prUrl":  null
+                                                              }
+                                      }
+                      },
+                      {
+                          "id":  "SLC-S-MediaOps.Plan",
+                          "name":  "MediaOps Plan",
+                          "repo":  "SkylineCommunications/SLC-S-MediaOps.Plan",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "Removed email, rewrote About/Key Features, added Use Cases, trimmed to 3 images",
+                                                             "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-MediaOps.Plan/issues/436",
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-MediaOps.Plan/pull/438",
+                                                             "updatedAt":  "2026-05-22"
+                                                         }
+                                     }
+                      },
+                      {
+                          "id":  "SLC-S-MediaOps.Live",
+                          "name":  "MediaOps Live",
+                          "repo":  "SkylineCommunications/SLC-S-MediaOps.Live",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "Value-focused About, Key Features, Use Cases added",
+                                                             "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-MediaOps.Live/issues/84",
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-MediaOps.Live/pull/85",
+                                                             "updatedAt":  "2026-05-22"
+                                                         }
+                                     }
+                      },
+                      {
+                          "id":  "SLC-S-SatOps",
+                          "name":  "SatOps",
+                          "repo":  "SkylineCommunications/SLC-S-SatOps",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "Rewritten README with catalog doc fixes",
+                                                             "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-SatOps/issues/22",
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-SatOps/pull/23",
+                                                             "updatedAt":  "2026-05-22"
+                                                         },
+                                         "typed-api":  {
+                                                           "status":  "fail",
+                                                           "note":  "No IXxxApiHelper found. DOM-only (satellite-management, antenna-management). No typed API surface yet.",
+                                                           "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-SatOps.md",
+                                                           "updatedAt":  "2026-05-22"
+                                                       },
+                                         "storage-objects":  {
+                                                                 "status":  "partial",
+                                                                 "note":  "DOM modules present (Satellite, Transponder, Beam, Slot, EarthStation, AntennaÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦) but SdmDomStorage/GenerateExposers attributes not confirmed",
+                                                                 "updatedAt":  "2026-05-22"
+                                                             }
+                                     }
+                      },
+                      {
+                          "id":  "SLC-S-Ticketing",
+                          "name":  "Ticketing",
+                          "repo":  "SkylineCommunications/SLC-S-Ticketing",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "Rewritten README: About/Key Features/Use Cases improvements",
+                                                             "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-Ticketing/issues/16",
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-Ticketing/pull/17",
+                                                             "updatedAt":  "2026-05-22"
+                                                         },
+                                         "sdm-compliance":  {
+                                                                "status":  "partial",
+                                                                "note":  "T2-1: missing IPeopleAndOrganizationsApiHelper; T3-3: SDM registration incomplete. PRs raised.",
+                                                                "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-Ticketing/issues/12",
+                                                                "prUrl":  "https://github.com/SkylineCommunications/SLC-S-Ticketing/pull/14",
+                                                                "updatedAt":  "2026-05-22"
+                                                            }
+                                     }
+                      },
+                      {
+                          "id":  "SLC-S-IpNetworkExplorer",
+                          "name":  "IP Network Explorer",
+                          "repo":  "SkylineCommunications/SLC-S-IpNetworkExplorer",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "Rewrote About/Key Features/Use Cases, fixed image paths (~/images/ ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ ./Images/), restored Supported Equipment section",
+                                                             "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-IpNetworkExplorer/issues/8",
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-IpNetworkExplorer/pull/9",
+                                                             "updatedAt":  "2026-05-22"
+                                                         }
+                                     }
+                      },
+                      {
+                          "id":  "SLC-S-DocumentHub",
+                          "name":  "DocumentHub",
+                          "repo":  "SkylineCommunications/SLC-S-DocumentHub",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "Rewrote About, Key Features, added Use Cases, trimmed to 3 images, Prerequisites note",
+                                                             "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-DocumentHub/issues/7",
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-DocumentHub/pull/8",
+                                                             "updatedAt":  "2026-05-22"
+                                                         }
+                                     }
+                      },
+                      {
+                          "id":  "SLC-S-Service-Management",
+                          "name":  "Service Management",
+                          "repo":  "SkylineCommunications/SLC-S-Service-Management",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "fail",
+                                                             "note":  "CatalogInformation/README.md was entirely missing ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â created from scratch in PR. Needs review.",
+                                                             "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-Service-Management/issues/66",
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-Service-Management/pull/67",
+                                                             "updatedAt":  "2026-05-22"
+                                                         }
+                                     }
+                      },
+                      {
+                          "id":  "SLC-S-FleetOps",
+                          "name":  "FleetOps",
+                          "repo":  "SkylineCommunications/SLC-S-FleetOps",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "5 warnings: 6 Key Features (max 5), no Use Cases, no Prerequisites, placeholder visual, About needs bold text",
+                                                             "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-FleetOps/catalog-doc.md",
+                                                             "updatedAt":  "2026-05-22"
+                                                         }
+                                     }
+                      },
+                      {
+                          "id":  "SLC-S-Relationships",
+                          "name":  "Relationships",
+                          "repo":  "SkylineCommunications/SLC-S-Relationships",
+                          "checks":  {
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "No Key Features section; Overview heading non-standard. PR #2 open with improvements.",
+                                                             "prUrl":  "https://github.com/SkylineCommunications/SLC-S-Relationships/pull/2",
+                                                             "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-Relationships/catalog-doc.md",
+                                                             "updatedAt":  "2026-05-22"
+                                                         },
+                                         "readme-doc":  {
+                                                            "status":  "partial",
+                                                            "note":  "5 errors incl. personal email + missing project READMEs. PR #3 open with fixes.",
+                                                            "prUrl":  "https://github.com/SkylineCommunications/SLC-S-Relationships/pull/3",
+                                                            "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-Relationships/readme-doc.md",
+                                                            "updatedAt":  "2026-05-22"
+                                                        }
+                                     }
+                      }
+                  ]
 }
