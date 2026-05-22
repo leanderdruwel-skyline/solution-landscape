@@ -543,6 +543,13 @@
           "prUrl": "https://github.com/SkylineCommunications/SLC-S-Relationships/pull/2",
           "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-Relationships/catalog-doc.md",
           "updatedAt": "2026-05-22"
+        },
+        "readme-doc": {
+          "status": "fail",
+          "note": "5 errors: no projects overview, personal email present, 3 project READMEs missing/empty. PR #3 open.",
+          "prUrl": "https://github.com/SkylineCommunications/SLC-S-Relationships/pull/3",
+          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-Relationships/readme-doc.md",
+          "updatedAt": "2026-05-22"
         }
       }
     }
