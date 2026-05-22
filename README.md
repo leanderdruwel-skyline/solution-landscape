@@ -1,4 +1,4 @@
-﻿# DataMiner Solution API Landscape
+# DataMiner Solution API Landscape
 
 This repository maps the **typed API surfaces** exposed by DataMiner solutions — objects available through a compiled API helper (DLL, NuGet devpack, or web API), **not** via raw DOM storage reads.
 
@@ -20,3 +20,4 @@ solutions/
 | Solution | Repository | Typed API Objects | Status |
 |----------|-----------|-------------------|--------|
 | SLC-S-SatOps | [SkylineCommunications/SLC-S-SatOps](https://github.com/SkylineCommunications/SLC-S-SatOps) | — | ⚠️ DOM-only, no typed API yet |
+| SLC-S-InfraOps | [SkylineCommunications/SLC-S-InfraOps](https://github.com/SkylineCommunications/SLC-S-InfraOps) | `Ticket`, `TicketType`, `TicketAttachment`, `TicketAffectedResource`, `TicketNote`, `ExternalOwner`, `Link` | ✅ 7 typed API objects (2 packages) |
