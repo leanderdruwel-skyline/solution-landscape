@@ -1,29 +1,37 @@
-# SLC-S-InfraOps -- Component Privacy
+# Component Privacy Check — SLC-S-InfraOps
+**Date**: 2026-05-22
+**Mode**: report-only
 
-**Solution:** InfraOps
-**Repository:** [SkylineCommunications/SLC-S-InfraOps](https://github.com/SkylineCommunications/SLC-S-InfraOps)
-**Checked on:** 2026-05-22
-**Agent:** component-privacy-checker.agent.md
+## Pre-Run Discovery
+- Existing issue: https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/73
+- Existing PR: https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/64
 
----
+## Repository Visibility
+Private GitHub repository (private: true).
 
-## Result: Fail -- 1 error, 1 warning
+## Manifests Found
+| Manifest Path | Type | Classification | isHidden | Status |
+|---------------|------|----------------|----------|--------|
+| SLC-S-InfraOps/CatalogInformation/manifest.yml | Standard Solution | Main solution package | not set | [PASS] |
+| SLC-S-InfraOps-CleanSystem/CatalogInformation/manifest.yml | Custom Solution | Sub-component solution package | not set | [ERROR] |
+| SLC-S-InfraOps-Demo-Data/CatalogInformation/manifest.yml | Custom Solution | Sub-component solution package | not set | [ERROR] |
+| SLC-S-InfraOps-FieldOperations-AddOns/CatalogInformation/manifest.yml | Custom Solution | Sub-component solution package | not set | [ERROR] |
+| SLC-S-InfraOps-RT/CatalogInformation/manifest.yml | Custom Solution | Sub-component solution package | not set | [ERROR] |
+| SLC-S-InfraOps-Vodafone-AddOns/CatalogInformation/manifest.yml | Custom Solution | Sub-component solution package | not set | [ERROR] |
+| SLC-S-InfraOps-WithDependencies/CatalogInformation/manifest.yml | Custom Solution | Sub-component solution package | not set | [ERROR] |
 
-### catalog / component-privacy-validation
-
+## Findings
 | # | Check | Status | Notes |
-|---|---|---|---|
-| 1 | Discover manifest files | Compliant | Main manifest found |
-| 2 | Validate main solution package | Compliant | Main package correctly public |
-| 3 | Validate sub-component privacy | Non-compliant [ERROR] | 6 sub-package manifests lack privacy settings: WithDependencies, Vodafone-AddOns, RT, Demo-Data, CleanSystem, FieldOperations-AddOns |
-| 4 | CI/CD pipeline alignment | Non-compliant [WARNING] | InfraOps-CICD.yml publishes internal/variant packages without explicit privacy flag |
-| 5 | Cross-check component types | Compliant | |
+|---|-------|--------|-------|
+| 1 | Repository visibility | [INFO] | The GitHub repository is private, but Catalog visibility is still controlled per manifest. |
+| 2 | Main solution manifest | [PASS] | SLC-S-InfraOps/CatalogInformation/manifest.yml is the main package and is not hidden. |
+| 3 | CleanSystem privacy | [ERROR] | SLC-S-InfraOps-CleanSystem/CatalogInformation/manifest.yml does not set egistrationOptions.isHidden: true. |
+| 4 | Demo Data privacy | [ERROR] | SLC-S-InfraOps-Demo-Data/CatalogInformation/manifest.yml does not set egistrationOptions.isHidden: true. |
+| 5 | FieldOperations AddOns privacy | [ERROR] | SLC-S-InfraOps-FieldOperations-AddOns/CatalogInformation/manifest.yml does not set egistrationOptions.isHidden: true. |
+| 6 | RT privacy | [ERROR] | SLC-S-InfraOps-RT/CatalogInformation/manifest.yml does not set egistrationOptions.isHidden: true. |
+| 7 | Vodafone AddOns privacy | [ERROR] | SLC-S-InfraOps-Vodafone-AddOns/CatalogInformation/manifest.yml does not set egistrationOptions.isHidden: true. |
+| 8 | WithDependencies privacy | [ERROR] | SLC-S-InfraOps-WithDependencies/CatalogInformation/manifest.yml does not set egistrationOptions.isHidden: true. |
+| 9 | Existing privacy issue | [INFO] | Open issue already exists: https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/73 |
+| 10 | Existing keyword-matching PR | [WARNING] | Open PR matched the pre-run keyword search: https://github.com/SkylineCommunications/SLC-S-InfraOps/pull/64 |
 
-**Result: 1 error, 1 warning**
-
-### Priority Actions
-1. Add isibleFor: [] or mark as private in the 6 sub-package manifests
-2. Add explicit privacy flags to CI/CD publishing steps
-
-### Issue
-[#73 - Component privacy validation findings](https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/73)
+**Result: 6 error(s) · 1 warning(s)**
