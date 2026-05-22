@@ -1,4 +1,4 @@
-﻿{
+{
     "lastUpdated":  "2026-05-22",
     "categories":  [
                        {
@@ -324,7 +324,7 @@
                                                        },
                                          "storage-objects":  {
                                                                  "status":  "partial",
-                                                                 "note":  "DOM modules present (Satellite, Transponder, Beam, Slot, EarthStation, Antenna…) but SdmDomStorage/GenerateExposers attributes not confirmed",
+                                                                 "note":  "DOM modules present (Satellite, Transponder, Beam, Slot, EarthStation, Antennaâ€¦) but SdmDomStorage/GenerateExposers attributes not confirmed",
                                                                  "updatedAt":  "2026-05-22"
                                                              }
                                      }
@@ -357,7 +357,7 @@
                           "checks":  {
                                          "catalog-doc":  {
                                                              "status":  "partial",
-                                                             "note":  "Rewrote About/Key Features/Use Cases, fixed image paths (~/images/ → ./Images/), restored Supported Equipment section",
+                                                             "note":  "Rewrote About/Key Features/Use Cases, fixed image paths (~/images/ â†’ ./Images/), restored Supported Equipment section",
                                                              "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-IpNetworkExplorer/issues/8",
                                                              "prUrl":  "https://github.com/SkylineCommunications/SLC-S-IpNetworkExplorer/pull/9",
                                                              "updatedAt":  "2026-05-22"
@@ -385,7 +385,7 @@
                           "checks":  {
                                          "catalog-doc":  {
                                                              "status":  "fail",
-                                                             "note":  "CatalogInformation/README.md was entirely missing — created from scratch in PR. Needs review.",
+                                                             "note":  "CatalogInformation/README.md was entirely missing â€” created from scratch in PR. Needs review.",
                                                              "issueUrl":  "https://github.com/SkylineCommunications/SLC-S-Service-Management/issues/66",
                                                              "prUrl":  "https://github.com/SkylineCommunications/SLC-S-Service-Management/pull/67",
                                                              "updatedAt":  "2026-05-22"
@@ -397,7 +397,12 @@
                           "name":  "FleetOps",
                           "repo":  "SkylineCommunications/SLC-S-FleetOps",
                           "checks":  {
-
+                                         "catalog-doc":  {
+                                                             "status":  "partial",
+                                                             "note":  "5 warnings: 6 Key Features (max 5), no Use Cases, no Prerequisites, placeholder visual, About needs bold text",
+                                                             "reportUrl":  "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-FleetOps/catalog-doc.md",
+                                                             "updatedAt":  "2026-05-22"
+                                                         }
                                      }
                       },
                       {
