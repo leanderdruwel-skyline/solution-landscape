@@ -38,57 +38,57 @@
       "shortName": "Catalog Doc",
       "name": "Catalog Documentation",
       "category": "documentation",
-      "description": "The storefront of your solution on dataminer.services.\n\nMust include:\n\u2022 Clear value proposition\n\u2022 Key features (max 5)\n\u2022 Use cases\n\u2022 Prerequisites (version ranges, not pinned)\n\u2022 1\u20133 screenshots\n\nContact details and personal email are forbidden.",
+      "description": "The storefront of your solution on dataminer.services.\n\nMust include:\n• Clear value proposition\n• Key features (max 5)\n• Use cases\n• Prerequisites (version ranges, not pinned)\n• 1–3 screenshots\n\nContact details and personal email are forbidden.",
       "agent": "catalog-doc-checker.agent.md",
       "agentStatus": "active",
-      "docUrl": "https://docs.dataminer.services/user-guide/Cloud_Platform/Catalog/Register_Catalog_Item.html"
+      "docUrl": "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Best_Practices_When_Documenting_Catalog_Items.html"
     },
     {
       "id": "readme-doc",
       "shortName": "README",
       "name": "Source README",
       "category": "documentation",
-      "description": "Developer-oriented README at the repository root.\n\nMust cover:\n\u2022 Architecture overview\n\u2022 Getting started\n\u2022 Project structure\n\u2022 Contribution guide\n\nDistinct from the Catalog README \u2014 targets contributors and integrators, not end users.",
+      "description": "Developer-oriented README at the repository root.\n\nMust cover:\n• Architecture overview\n• Getting started\n• Project structure\n• Contribution guide\n\nDistinct from the Catalog README — targets contributors and integrators, not end users.",
       "agent": "readme-writer.agent.md",
       "agentStatus": "active",
-      "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
+      "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html?q=readme#adding-a-readme-file"
     },
     {
       "id": "release-notes",
       "shortName": "Release Notes",
       "name": "Release Notes",
       "category": "documentation",
-      "description": "Every release must have release notes in plain language.\n\nNotes should describe what changed and why it matters \u2014 not just a list of commits or ticket numbers.\n\nWritten for non-technical audiences.",
+      "description": "Every release must have release notes in plain language.\n\nNotes should describe what changed and why it matters — not just a list of commits or ticket numbers.\n\nWritten for non-technical audiences.",
       "agent": "rn-write.agent.md",
       "agentStatus": "active",
-      "docUrl": "https://docs.dataminer.services/user-guide/Cloud_Platform/Catalog/Register_Catalog_Item.html"
+      "docUrl": "https://internaldocs.skyline.be/Solutions/Guidelines/Administration/release-notes.html"
     },
     {
       "id": "sdm-compliance",
       "shortName": "SDM",
       "name": "SDM Compliance",
       "category": "architecture",
-      "description": "Standard Data Model (SDM) \u2014 3-tier architecture:\n\n\u2022 T1 Foundational: SdmObject<T> models + repository storage\n\u2022 T2 Encapsulated: IApiHelper interface accepting IConnection\n\u2022 T3 Federated: registered via SdmRegistrar\n\nAll tiers must pass. This is an existing architecture standard.",
+      "description": "Standard Data Model (SDM) — 3-tier architecture:\n\n• T1 Foundational: SdmObject<T> models + repository storage\n• T2 Encapsulated: IApiHelper interface accepting IConnection\n• T3 Federated: registered via SdmRegistrar\n\nAll tiers must pass. This is an existing architecture standard.",
       "agent": "sdm-compliance-checker.agent.md",
       "agentStatus": "active",
-      "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
+      "docUrl": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#autonomy-by-design"
     },
     {
       "id": "storage-objects",
       "shortName": "Storage",
       "name": "Storage / DOM Objects",
       "category": "architecture",
-      "description": "DOM modules must be properly scoped:\n\n\u2022 Use [SdmDomStorage] + [GenerateExposers]\n\u2022 Module IDs namespaced to solution\n  (e.g. infraops/assets, not just assets)\n\u2022 Storage mappers (*.g.cs) committed\n\nNever access another solution\u2019s DOM module directly \u2014 use their typed IApiHelper.",
+      "description": "DOM modules must be properly scoped:\n\n• Use [SdmDomStorage] + [GenerateExposers]\n• Module IDs namespaced to solution\n  (e.g. infraops/assets, not just assets)\n• Storage mappers (*.g.cs) committed\n\nNever access another solution’s DOM module directly — use their typed IApiHelper.",
       "agent": "solution-storage-mapper.agent.md",
       "agentStatus": "active",
-      "docUrl": "https://docs.dataminer.services/user-guide/Advanced_Modules/DOM/DOM.html"
+      "docUrl": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#strict-data-encapsulation"
     },
     {
       "id": "srm-resources",
       "shortName": "SRM",
       "name": "SRM Resource Types",
       "category": "architecture",
-      "description": "For solutions with bookable services:\n\n\u2022 Define Profile Definitions per resource capability\n\u2022 Map Resource Pool types to SDM entities\n\u2022 Name resources using SOLCODE convention\n\nN/A for solutions that do not orchestrate services.",
+      "description": "For solutions with bookable services:\n\n• Define Profile Definitions per resource capability\n• Map Resource Pool types to SDM entities\n• Name resources using SOLCODE convention\n\nN/A for solutions that do not orchestrate services.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/user-guide/Advanced_Modules/Service_and_Resource_Management/About_SRM.html"
@@ -98,10 +98,10 @@
       "shortName": "Solution Deps",
       "name": "Inter-Solution References",
       "category": "architecture",
-      "description": "Cross-solution dependencies must flow through typed NuGet API helpers \u2014 never direct DOM access.\n\n\u2022 Declare consumed SDM packages in Directory.Packages.props\n\u2022 Dependency graph documented and free of cycles\n\nThis is the natural outcome of SDM T3 compliance, not a new requirement.",
+      "description": "Cross-solution dependencies must flow through typed NuGet API helpers — never direct DOM access.\n\n• Declare consumed SDM packages in Directory.Packages.props\n• Dependency graph documented and free of cycles\n\nThis is the natural outcome of SDM T3 compliance, not a new requirement.",
       "agent": null,
       "agentStatus": "planned",
-      "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
+      "docUrl": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#33-cross-solution-data-access"
     },
     {
       "id": "dom-boundaries",
@@ -110,37 +110,38 @@
       "category": "architecture",
       "description": "No solution may directly access a DOM module owned by another solution. Cross-solution data must flow through the owning solution's typed API helper. Any direct DomHelper or ICrudHelper access to an externally-owned module is a major violation.",
       "agent": "dom-boundary-checker.agent.md",
-      "agentStatus": "active"
+      "agentStatus": "active",
+      "docUrl": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#strict-data-encapsulation"
     },
     {
       "id": "typed-api",
       "shortName": "Typed API",
       "name": "Typed API Objects",
       "category": "api",
-      "description": "The solution exposes an IApiHelper interface with typed repository properties \u2014 one per domain object.\n\n\u2022 IBulkRepository<T> or IObservableRepository<T>\n\u2022 Consumers work with typed objects without touching DOM directly\n\nThis is SDM T2 compliance at the API surface level.",
+      "description": "The solution exposes an IApiHelper interface with typed repository properties — one per domain object.\n\n• IBulkRepository<T> or IObservableRepository<T>\n• Consumers work with typed objects without touching DOM directly\n\nThis is SDM T2 compliance at the API surface level.",
       "agent": "solution-api-surface-mapper.agent.md",
       "agentStatus": "active",
-      "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
+      "docUrl": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#ai-and-ui-ready-by-default"
     },
     {
       "id": "gqi-udapi",
       "shortName": "GQI/UDAPI",
       "name": "GQI & User-Defined APIs",
       "category": "api",
-      "description": "Full external consumability requires both:\n\n\u2022 GQI ad-hoc data sources \u2014 expose objects to dashboards and low-code apps\n\u2022 UDAPI endpoints \u2014 expose objects to external HTTP clients and AI agents",
+      "description": "Full external consumability requires both:\n\n• GQI ad-hoc data sources — expose objects to dashboards and low-code apps\n• UDAPI endpoints — expose objects to external HTTP clients and AI agents",
       "agent": null,
       "agentStatus": "planned",
-      "docUrl": "https://docs.dataminer.services/user-guide/Advanced_Modules/User_Defined_APIs/UD_APIs.html"
+      "docUrl": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#ai-and-ui-ready-by-default"
     },
     {
       "id": "devpack",
       "shortName": "Devpack",
       "name": "NuGet Devpack Published",
       "category": "api",
-      "description": "The solution\u2019s typed API helper (IApiHelper + models) must be published as a NuGet package.\n\nPublish to the internal Skyline feed so other solutions can take a typed dependency without referencing source code.\n\nWithout a devpack, cross-solution consumption requires code duplication.",
+      "description": "The solution’s typed API helper (IApiHelper + models) must be published as a NuGet package.\n\nPublish to the internal Skyline feed so other solutions can take a typed dependency without referencing source code.\n\nWithout a devpack, cross-solution consumption requires code duplication.",
       "agent": null,
       "agentStatus": "planned",
-      "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
+      "docUrl": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#42-available-options"
     },
     {
       "id": "component-privacy",
@@ -157,17 +158,17 @@
       "shortName": "Naming",
       "name": "Naming Convention",
       "category": "quality",
-      "description": "All components follow Skyline naming conventions:\n\n\u2022 Automation scripts: SOLCODE-TYPE-name (hyphen)\n\u2022 Apps, dashboards, elements: SOLCODE name (space)\n\nSOLCODE is a 3-letter uppercase code unique to the solution.\n\nThis is an existing published guideline.",
+      "description": "All components follow Skyline naming conventions:\n\n• Automation scripts: SOLCODE-TYPE-name (hyphen)\n• Apps, dashboards, elements: SOLCODE name (space)\n\nSOLCODE is a 3-letter uppercase code unique to the solution.\n\nThis is an existing published guideline.",
       "agent": "naming-convention-check.agent.md",
       "agentStatus": "active",
-      "docUrl": "https://aka.dataminer.services/Naming_Conventions_For_Catalog_Item_Components"
+      "docUrl": "https://docs.dataminer.services/develop/best_practices/Catalog_Items/Naming_Conventions_For_Catalog_Item_Components.html"
     },
     {
       "id": "tests",
       "shortName": "Tests",
       "name": "Automated Tests",
       "category": "quality",
-      "description": "Unit tests must cover core business logic:\n\n\u2022 Use DomConnectionMock or repository stubs\n\u2022 Run offline \u2014 no live DataMiner system needed\n\u2022 CI runs tests on every PR\n\nFast, reliable feedback without infrastructure.",
+      "description": "Unit tests must cover core business logic:\n\n• Use DomConnectionMock or repository stubs\n• Run offline — no live DataMiner system needed\n• CI runs tests on every PR\n\nFast, reliable feedback without infrastructure.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
@@ -177,7 +178,7 @@
       "shortName": "CI/CD",
       "name": "CI/CD Pipeline",
       "category": "quality",
-      "description": "GitHub Actions pipeline must:\n\n\u2022 Build on every PR\n\u2022 Run all tests automatically\n\u2022 Publish NuGet / DataMiner package on release tag\n\nMain branch must be green. Standard Skyline GitHub guideline.",
+      "description": "GitHub Actions pipeline must:\n\n• Build on every PR\n• Run all tests automatically\n• Publish NuGet / DataMiner package on release tag\n\nMain branch must be green. Standard Skyline GitHub guideline.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
@@ -187,7 +188,7 @@
       "shortName": "Deps",
       "name": "Dependency Health",
       "category": "quality",
-      "description": "Keep NuGet dependencies healthy:\n\n\u2022 No deprecated packages\n\u2022 All packages up to date\n\u2022 Consistent SDM package versions across solutions that interact\n\nVersion drift between solutions causes runtime conflicts.",
+      "description": "Keep NuGet dependencies healthy:\n\n• No deprecated packages\n• All packages up to date\n• Consistent SDM package versions across solutions that interact\n\nVersion drift between solutions causes runtime conflicts.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
@@ -197,7 +198,7 @@
       "shortName": "Freshness",
       "name": "Health & Freshness",
       "category": "quality",
-      "description": "Signs of a healthy, maintained solution:\n\n\u2022 Commits within the last 3 months\n\u2022 Green CI pipeline\n\u2022 Low open-issue count\n\u2022 Regular releases\n\nAll data sourced from the GitHub API.",
+      "description": "Signs of a healthy, maintained solution:\n\n• Commits within the last 3 months\n• Green CI pipeline\n• Low open-issue count\n• Regular releases\n\nAll data sourced from the GitHub API.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
@@ -207,17 +208,17 @@
       "shortName": "LCA",
       "name": "Low-Code App",
       "category": "ux",
-      "description": "A DataMiner low-code app must be present and functional.\n\n\u2022 Named after the solution (SOLNAME)\n\u2022 Operators can use it without training\n\u2022 Clear navigation, consistent layout\n\u2022 Follows DataMiner style guide",
+      "description": "A DataMiner low-code app must be present and functional.\n\n• Named after the solution (SOLNAME)\n• Operators can use it without training\n• Clear navigation, consistent layout\n• Follows DataMiner style guide",
       "agent": null,
       "agentStatus": "planned",
-      "docUrl": "https://docs.dataminer.services/user-guide/Low_Code_Apps/Low_Code_Apps.html"
+      "docUrl": "https://docs.dataminer.services/dataminer/Functions/Dashboards_and_Low_Code_Apps/Low_Code_Apps/Style_guide.html"
     },
     {
       "id": "demo-mode",
       "shortName": "Demo",
       "name": "Demo / Mock Mode",
       "category": "ux",
-      "description": "Mock data injected through the typed API to evaluate the solution without a live system.\n\n\u2022 Covers typical use cases\n\u2022 Toggled via API \u2014 not hardcoded in scripts\n\nCurrently the highest-value gap across all solutions.",
+      "description": "Mock data injected through the typed API to evaluate the solution without a live system.\n\n• Covers typical use cases\n• Toggled via API — not hardcoded in scripts\n\nCurrently the highest-value gap across all solutions.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
@@ -227,27 +228,27 @@
       "shortName": "UX Audit",
       "name": "LCA UX Audit",
       "category": "ux",
-      "description": "The DataMiner low-code app must pass a full UX audit:\n\n\u2022 DataMiner style guide compliance\n\u2022 Consistent spacing and typography\n\u2022 Proper status chips\n\u2022 Empty states and loading indicators\n\nRun the dataminer-ux-audit agent for a scored report.",
+      "description": "The DataMiner low-code app must pass a full UX audit:\n\n• DataMiner style guide compliance\n• Consistent spacing and typography\n• Proper status chips\n• Empty states and loading indicators\n\nRun the dataminer-ux-audit agent for a scored report.",
       "agent": "dataminer-ux-audit",
       "agentStatus": "active",
-      "docUrl": "https://docs.dataminer.services/user-guide/Low_Code_Apps/Low_Code_Apps.html"
+      "docUrl": "https://docs.dataminer.services/dataminer/Functions/Dashboards_and_Low_Code_Apps/Low_Code_Apps/Style_guide.html"
     },
     {
       "id": "product-owner",
       "shortName": "PO",
       "name": "Product Owner",
       "category": "process",
-      "description": "A named Product Owner identified in .github/CODEOWNERS.\n\nThe PO is accountable for:\n\u2022 Roadmap\n\u2022 Backlog\n\u2022 Release decisions\n\nNot just technical delivery \u2014 clear product ownership per Skyline practice.",
+      "description": "A named Product Owner identified in .github/CODEOWNERS.\n\nThe PO is accountable for:\n• Roadmap\n• Backlog\n• Release decisions\n\nNot just technical delivery — clear product ownership per Skyline practice.",
       "agent": null,
       "agentStatus": "planned",
-      "docUrl": "https://internaldocs.skyline.be/Solutions/solutions-workstream.html"
+      "docUrl": "https://internaldocs.skyline.be/Solutions/Guidelines/guidelines.html#expectations-3"
     },
     {
       "id": "active-backlog",
       "shortName": "Backlog",
       "name": "Active Backlog",
       "category": "process",
-      "description": "GitHub Issues or Projects used as an active backlog:\n\n\u2022 Issues labeled and triaged within 2 weeks\n\u2022 Milestones or Projects show roadmap\n\u2022 No issues untouched > 90 days\n\nThe issue-triage agent helps maintain hygiene.",
+      "description": "GitHub Issues or Projects used as an active backlog:\n\n• Issues labeled and triaged within 2 weeks\n• Milestones or Projects show roadmap\n• No issues untouched > 90 days\n\nThe issue-triage agent helps maintain hygiene.",
       "agent": "issue-triage.agent.md",
       "agentStatus": "active",
       "docUrl": "https://docs.dataminer.services/develop/CICD/Skyline%20Communications/Github/Use_Github_Guidelines.html"
@@ -257,7 +258,7 @@
       "shortName": "Catalog",
       "name": "Catalog Published",
       "category": "process",
-      "description": "Published in dataminer.services Catalog as \u2018Standard Solution\u2019:\n\n\u2022 Semantic versioning\n\u2022 Main range tagged\n\u2022 Regular releases\n\nOne-time publishing is not enough \u2014 active release cadence shows the solution is supported.",
+      "description": "Published in dataminer.services Catalog as ‘Standard Solution’:\n\n• Semantic versioning\n• Main range tagged\n• Regular releases\n\nOne-time publishing is not enough — active release cadence shows the solution is supported.",
       "agent": null,
       "agentStatus": "planned",
       "docUrl": "https://docs.dataminer.services/user-guide/Cloud_Platform/Catalog/Register_Catalog_Item.html"
@@ -346,7 +347,7 @@
         },
         "storage-objects": {
           "status": "partial",
-          "note": "DOM modules present (Satellite, Transponder, Beam, Slot, EarthStation, Antenna\u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u201a\u00c2\u00a6) but SdmDomStorage/GenerateExposers attributes not confirmed",
+          "note": "DOM modules present (Satellite, Transponder, Beam, Slot, EarthStation, AntennaÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦) but SdmDomStorage/GenerateExposers attributes not confirmed",
           "updatedAt": "2026-05-22"
         }
       }
@@ -379,7 +380,7 @@
       "checks": {
         "catalog-doc": {
           "status": "partial",
-          "note": "Rewrote About/Key Features/Use Cases, fixed image paths (~/images/ \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a0\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2 ./Images/), restored Supported Equipment section",
+          "note": "Rewrote About/Key Features/Use Cases, fixed image paths (~/images/ ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ ./Images/), restored Supported Equipment section",
           "issueUrl": "https://github.com/SkylineCommunications/SLC-S-IpNetworkExplorer/issues/8",
           "prUrl": "https://github.com/SkylineCommunications/SLC-S-IpNetworkExplorer/pull/9",
           "updatedAt": "2026-05-22"
@@ -407,7 +408,7 @@
       "checks": {
         "catalog-doc": {
           "status": "fail",
-          "note": "CatalogInformation/README.md was entirely missing \u00c3\u0192\u00c2\u00a2\u00c3\u00a2\u00e2\u20ac\u0161\u00c2\u00ac\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u009d created from scratch in PR. Needs review.",
+          "note": "CatalogInformation/README.md was entirely missing ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â created from scratch in PR. Needs review.",
           "issueUrl": "https://github.com/SkylineCommunications/SLC-S-Service-Management/issues/66",
           "prUrl": "https://github.com/SkylineCommunications/SLC-S-Service-Management/pull/67",
           "updatedAt": "2026-05-22"
