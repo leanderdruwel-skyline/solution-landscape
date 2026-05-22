@@ -376,7 +376,7 @@
       "checks": {
         "catalog-doc": {
           "status": "partial",
-          "note": "Open PR exists; README is missing the required Use Cases section, while other checked README and manifest items pass.",
+          "note": "Open PR exists; README is missing Use Cases and uses a non-standard Pricing heading; other checks pass.",
           "updatedAt": "2026-05-22",
           "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/catalog-doc.md",
           "issueUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/63",
@@ -430,7 +430,7 @@
       "results": {
         "catalog-doc": {
           "status": "partial",
-          "summary": "Open PR exists; README is missing the required Use Cases section, while other checked README and manifest items pass.",
+          "summary": "Open PR exists; README is missing Use Cases and uses a non-standard Pricing heading; other checks pass.",
           "checkedAt": "2026-05-22T14:14:47Z",
           "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/catalog-doc.md",
           "issueUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/63",
