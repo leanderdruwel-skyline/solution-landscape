@@ -2,45 +2,42 @@
 
 **Solution:** InfraOps (Infrastructure Operations)
 **Repository:** [SkylineCommunications/SLC-S-InfraOps](https://github.com/SkylineCommunications/SLC-S-InfraOps)
-**Analysed version:** 1.0.0 (assembly 2026.0506.1232.30588)
+**NuGet/devpack source:** [SkylineCommunications/SLC-SDM-InfraOps](https://github.com/SkylineCommunications/SLC-SDM-InfraOps)
 **Analysed on:** 2026-05-22
 
 ---
 
-## Result: Typed API Objects Found — 7 objects across 2 packages
+## Result: Typed API Objects Found — 6 objects across 2 modules
 
-No `I*ApiHelper.cs` was found in the InfraOps solution source itself. The typed API surface is entirely provided through two NuGet packages referenced by `InfraOps.Common`.
+The typed API surface is published via `SkylineCommunications/SLC-SDM-InfraOps`, which contains two `Common` packages, each with an `I*ApiHelper` interface.
 
 ---
 
 ## API Objects
 
-### Package: `Skyline.DataMiner.SDM.Ticketing` v1.0.2
+### Module: Asset Management
 
-**Interface:** [`ITicketingApiHelper`](https://github.com/SkylineCommunications/SLC-S-Ticketing-Nuget/blob/main/API.Common/ITicketingApiHelper.cs)
-**GitHub source:** [SkylineCommunications/SLC-S-Ticketing-Nuget](https://github.com/SkylineCommunications/SLC-S-Ticketing-Nuget)
+**Interface:** [`IAssetManagementApiHelper`](https://github.com/SkylineCommunications/SLC-SDM-InfraOps/blob/main/SDM.AssetManagement.Common/Helpers/IAssetManagementApiHelper.cs)
+**Package project:** `SDM.AssetManagement.Common`
 
 | Property Name | Repository Type | Model Type | Model Defined In |
 |---|---|---|---|
-| `Tickets` | `IObservableRepository<Ticket>` | `Ticket` | [`API.Common/Models/Ticket.cs`](https://github.com/SkylineCommunications/SLC-S-Ticketing-Nuget/blob/main/API.Common/Models/Ticket.cs) |
-| `TicketTypes` | `IObservableRepository<TicketType>` | `TicketType` | [`API.Common/Models/TicketType.cs`](https://github.com/SkylineCommunications/SLC-S-Ticketing-Nuget/blob/main/API.Common/Models/TicketType.cs) |
-| `Attachments` | `IObservableRepository<TicketAttachment>` | `TicketAttachment` | [`API.Common/Models/TicketAttachment.cs`](https://github.com/SkylineCommunications/SLC-S-Ticketing-Nuget/blob/main/API.Common/Models/TicketAttachment.cs) |
-| `AffectedResources` | `IObservableRepository<TicketAffectedResource>` | `TicketAffectedResource` | [`API.Common/Models/TicketAffectedResource.cs`](https://github.com/SkylineCommunications/SLC-S-Ticketing-Nuget/blob/main/API.Common/Models/TicketAffectedResource.cs) |
-| `Notes` | `IObservableRepository<TicketNote>` | `TicketNote` | [`API.Common/Models/TicketNote.cs`](https://github.com/SkylineCommunications/SLC-S-Ticketing-Nuget/blob/main/API.Common/Models/TicketNote.cs) |
-| `ExternalOwners` | `IObservableRepository<ExternalOwner>` | `ExternalOwner` | [`API.Common/Models/ExternalOwner.cs`](https://github.com/SkylineCommunications/SLC-S-Ticketing-Nuget/blob/main/API.Common/Models/ExternalOwner.cs) |
+| `Assets` | `IBulkRepository<Asset>` | `Asset` | [`SDM.AssetManagement.Common/Models/Asset.cs`](https://github.com/SkylineCommunications/SLC-SDM-InfraOps/blob/main/SDM.AssetManagement.Common/Models/Asset.cs) |
+| `AssetClasses` | `IBulkRepository<AssetClass>` | `AssetClass` | [`SDM.AssetManagement.Common/Models/AssetClass.cs`](https://github.com/SkylineCommunications/SLC-SDM-InfraOps/blob/main/SDM.AssetManagement.Common/Models/AssetClass.cs) |
+| `PowerPorts` | `IBulkRepository<PowerPort>` | `PowerPort` | [`SDM.AssetManagement.Common/Models/PowerPort.cs`](https://github.com/SkylineCommunications/SLC-SDM-InfraOps/blob/main/SDM.AssetManagement.Common/Models/PowerPort.cs) |
+| `DataPorts` | `IBulkRepository<DataPort>` | `DataPort` | [`SDM.AssetManagement.Common/Models/DataPort.cs`](https://github.com/SkylineCommunications/SLC-SDM-InfraOps/blob/main/SDM.AssetManagement.Common/Models/DataPort.cs) |
+| `DeviceTypes` | `IBulkRepository<DeviceType>` | `DeviceType` | [`SDM.AssetManagement.Common/Models/DeviceType.cs`](https://github.com/SkylineCommunications/SLC-SDM-InfraOps/blob/main/SDM.AssetManagement.Common/Models/DeviceType.cs) |
 
 ---
 
-### Package: `Skyline.DataMiner.SDM.ObjectLinking.Common` v2.0.1
+### Module: Facility Management
 
-**Entry point:** [`ObjectLinker`](https://github.com/SkylineCommunications/SLC-SDM-ObjectLinking/blob/main/API.Common/ObjectLinker.cs) (concrete class — no `I*ApiHelper` interface)
-**GitHub source:** [SkylineCommunications/SLC-SDM-ObjectLinking](https://github.com/SkylineCommunications/SLC-SDM-ObjectLinking)
+**Interface:** [`IFacilityManagementApiHelper`](https://github.com/SkylineCommunications/SLC-SDM-InfraOps/blob/main/SDM.FacilityManagement.Common/Helpers/IFacilityManagementApiHelper.cs)
+**Package project:** `SDM.FacilityManagement.Common`
 
 | Property Name | Repository Type | Model Type | Model Defined In |
 |---|---|---|---|
-| `Links` | `IBulkRepository<Link>` | `Link` | [`API.Common/Models/Link.cs`](https://github.com/SkylineCommunications/SLC-SDM-ObjectLinking/blob/main/API.Common/Models/Link.cs) |
-
-> **Note:** `ObjectLinker` is a concrete class, not an interface matching the `I*ApiHelper` pattern. It still qualifies as a typed API surface as `Links` is a public `IBulkRepository<Link>` property.
+| `Facilities` | `IBulkRepository<Facility>` | `Facility` | [`SDM.FacilityManagement.Common/Models/Facility.cs`](https://github.com/SkylineCommunications/SLC-SDM-InfraOps/blob/main/SDM.FacilityManagement.Common/Models/Facility.cs) |
 
 ---
 
@@ -48,27 +45,12 @@ No `I*ApiHelper.cs` was found in the InfraOps solution source itself. The typed 
 
 | Location | What was searched | Found? |
 |---|---|---|
-| Solution source (`**/*.cs`) | `I*ApiHelper.cs` filename | ❌ No |
-| Solution source (`**/*.cs`) | `IRepository<T>` / `IBulkRepository<T>` / `IObservableRepository<T>` usage | ❌ No |
-| `~/.nuget/packages/skyline.dataminer.sdm.ticketing/` | NuGet XML docs for `I*Api`/`I*ApiHelper` | ❌ Not in local cache |
-| `~/.nuget/packages/skyline.dataminer.sdm.objectlinking.common/` | NuGet XML docs for `I*Api`/`I*ApiHelper` | ❌ Not in local cache |
-| `SkylineCommunications/SLC-S-Ticketing-Nuget` → `API.Common/` | `ITicketingApiHelper.cs` | ✅ Found — 6 repository properties |
-| `SkylineCommunications/SLC-SDM-ObjectLinking` → `API.Common/` | `ObjectLinker.cs` | ✅ Found — 1 repository property (concrete class) |
+| Solution source `SLC-S-InfraOps` (`**/*.cs`) | `I*ApiHelper.cs` filename | ❌ No |
+| `SkylineCommunications/SLC-SDM-InfraOps` → `SDM.AssetManagement.Common/Helpers/` | `IAssetManagementApiHelper.cs` | ✅ Found — 5 repository properties |
+| `SkylineCommunications/SLC-SDM-InfraOps` → `SDM.FacilityManagement.Common/Helpers/` | `IFacilityManagementApiHelper.cs` | ✅ Found — 1 repository property |
 
-## DOM-managed objects (out of scope, for reference)
-
-InfraOps manages its own domain objects via DOM modules:
-
-| Module | Entities |
-|---|---|
-| `asset-management` | Asset, AssetClass, Port, Connection, DeviceType, CableType, PortType |
-| `facility-management` | Site, Facility, Floor, Room, Row, Rack, Zone, Desk |
-| `field-operations` | (field-op assets and transfers) |
-| `plan-and-build` | Job, JobType |
-| `people-organizations` | (people, organizations, cost & billing) |
-
-These are accessed via `DomHelper` directly and are out of scope for the typed API landscape.
+> **NuGet repo naming convention for InfraOps:** `SLC-SDM-<Module>` (not `SLC-S-<Module>-Nuget`). The devpack repo organises sub-modules as `SDM.<SubModule>.Common/Helpers/I<SubModule>ApiHelper.cs`.
 
 ---
 
-> ✅ **7 typed API objects found** across 2 packages (`Ticketing`: 6, `ObjectLinking`: 1).
+> ✅ **6 typed API objects found** across 2 modules (AssetManagement: 5, FacilityManagement: 1).
