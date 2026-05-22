@@ -70,12 +70,12 @@
     },
     {
       "id": "release-notes",
-      "shortName": "Release Notes",
+      "shortName": "RN",
       "name": "Release Notes",
       "category": "documentation",
       "description": "Every release must have release notes in plain language.\n\nNotes should describe what changed and why it matters — not just a list of commits or ticket numbers.\n\nWritten for non-technical audiences.",
       "agent": "rn-write.agent.md",
-      "agentStatus": "active",
+      "agentStatus": "planned",
       "docUrls": [
         {
           "label": "Release Notes Guidelines",
