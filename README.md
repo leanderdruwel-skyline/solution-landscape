@@ -20,4 +20,4 @@ solutions/
 | Solution | Repository | Typed API Objects | Status |
 |----------|-----------|-------------------|--------|
 | SLC-S-SatOps | [SkylineCommunications/SLC-S-SatOps](https://github.com/SkylineCommunications/SLC-S-SatOps) | — | ⚠️ DOM-only, no typed API yet |
-| SLC-S-InfraOps | [SkylineCommunications/SLC-S-InfraOps](https://github.com/SkylineCommunications/SLC-S-InfraOps) | `Ticket`, `TicketType`, `TicketAttachment`, `TicketAffectedResource`, `TicketNote`, `ExternalOwner`, `Link` | ✅ 7 typed API objects (2 packages) |
+| SLC-S-InfraOps | [SkylineCommunications/SLC-S-InfraOps](https://github.com/SkylineCommunications/SLC-S-InfraOps) | `Asset`, `AssetClass`, `PowerPort`, `DataPort`, `DeviceType`, `Facility` | ✅ 6 typed API objects via [SLC-SDM-InfraOps](https://github.com/SkylineCommunications/SLC-SDM-InfraOps) |
