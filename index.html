@@ -47,6 +47,7 @@ th,td{vertical-align:middle}
 .cat-th{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;text-align:center;padding:6px 4px;border-bottom:2px solid currentColor;white-space:nowrap;background:var(--surface2)}
 /* check sub-header */
 .chk-th{font-size:10px;color:var(--muted);text-align:center;padding:3px 5px 7px;white-space:nowrap;cursor:default;background:var(--surface2);font-weight:500;border-bottom:1px solid var(--border)}
+.chk-planned{opacity:.4;font-style:italic}
 /* gap column */
 .gap{width:8px;background:var(--bg)}
 
@@ -196,7 +197,8 @@ function render(){
   catOrder.forEach(cid=>{
     const checks=grouped[cid];if(!checks.length)return;
     checks.forEach(c=>{
-      h+=`<th class="chk-th" data-chkid="${c.id}">${c.shortName}</th>`;
+      const planned=c.agentStatus!=='active';
+      h+=`<th class="chk-th${planned?' chk-planned':''}" data-chkid="${c.id}">${c.shortName}</th>`;
     });
   });
   h+='</tr>';
@@ -244,7 +246,7 @@ function detail(sid,cid){
     ?`<span class="agent-tag active">🤖 Agent: ${chk.agent}</span>`
     :`<span class="agent-tag planned">💡 Agent: planned</span>`;
   const links=[];
-  if(chk.docUrl)links.push(`<a class="mlink" href="${chk.docUrl}" target="_blank">📖 Guidelines</a>`);
+  (chk.docUrls||[]).forEach(d=>links.push(`<a class="mlink" href="${d.url}" target="_blank">📖 ${d.label}</a>`));
   if(r?.prUrl)links.push(`<a class="mlink" href="${r.prUrl}" target="_blank">🔀 Pull Request</a>`);
   if(r?.issueUrl)links.push(`<a class="mlink" href="${r.issueUrl}" target="_blank">🐛 Issue</a>`);
   if(r?.reportUrl)links.push(`<a class="mlink" href="${r.reportUrl}" target="_blank">📄 Report</a>`);
@@ -275,9 +277,10 @@ function _showTip(th){
   _tip.querySelector('.tip-name').textContent=c.name;
   _tip.querySelector('.tip-desc').textContent=c.description||'';
   const docEl=_tip.querySelector('.tip-doc');
-  docEl.innerHTML=c.docUrl
-    ?`<a href="${c.docUrl}" target="_blank" style="color:var(--blue)">📖 Existing guideline &rarr;</a>`
-    :'';
+  if(c.docUrls&&c.docUrls.length){
+    docEl.innerHTML='<span style="color:var(--muted);font-size:10px">📖 Guidelines: </span>'+
+      c.docUrls.map(d=>`<a href="${d.url}" target="_blank" style="color:var(--blue);margin-right:6px;white-space:nowrap">${d.label} →</a>`).join(' ');
+  } else { docEl.innerHTML=''; }
   const rect=th.getBoundingClientRect();
   _tip.style.left=Math.min(rect.left,window.innerWidth-300)+'px';
   _tip.style.top=(rect.bottom+6)+'px';
