@@ -17,6 +17,11 @@
       "color": "#3fb950"
     },
     {
+      "id": "security",
+      "name": "Security",
+      "color": "#f97316"
+    },
+    {
       "id": "quality",
       "name": "Quality",
       "color": "#d29922"
@@ -79,6 +84,25 @@
       ]
     },
     {
+      "id": "storage-objects",
+      "shortName": "Storage",
+      "name": "Storage / DOM Objects",
+      "category": "architecture",
+      "description": "DOM modules must be properly scoped — and no solution may directly access a DOM module owned by another solution.\n\n• Use [SdmDomStorage] + [GenerateExposers]\n• Module IDs namespaced to solution\n  (e.g. infraops/assets, not just assets)\n• Storage mappers (*.g.cs) committed\n• Cross-solution data flows through the owning solution’s typed IApiHelper — never via direct DomHelper",
+      "agent": "solution-storage-mapper.agent.md",
+      "agentStatus": "active",
+      "docUrls": [
+        {
+          "label": "Strict Data Encapsulation",
+          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#strict-data-encapsulation"
+        },
+        {
+          "label": "Tier 1 — Data Layer",
+          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#321-tier-1--data-layer-the-memory"
+        }
+      ]
+    },
+    {
       "id": "sdm-compliance",
       "shortName": "SDM",
       "name": "SDM Compliance",
@@ -94,25 +118,6 @@
         {
           "label": "Tier 2 — Logic Layer",
           "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#322-tier-2--logic-layer-the-brain"
-        },
-        {
-          "label": "Tier 1 — Data Layer",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#321-tier-1--data-layer-the-memory"
-        }
-      ]
-    },
-    {
-      "id": "storage-objects",
-      "shortName": "Storage",
-      "name": "Storage / DOM Objects",
-      "category": "architecture",
-      "description": "DOM modules must be properly scoped — and no solution may directly access a DOM module owned by another solution.\n\n• Use [SdmDomStorage] + [GenerateExposers]\n• Module IDs namespaced to solution\n  (e.g. infraops/assets, not just assets)\n• Storage mappers (*.g.cs) committed\n• Cross-solution data flows through the owning solution’s typed IApiHelper — never via direct DomHelper",
-      "agent": "solution-storage-mapper.agent.md",
-      "agentStatus": "active",
-      "docUrls": [
-        {
-          "label": "Strict Data Encapsulation",
-          "url": "https://internaldocs.skyline.be/Solutions/Guidelines/solution-interoperability.html#strict-data-encapsulation"
         },
         {
           "label": "Tier 1 — Data Layer",
@@ -188,7 +193,7 @@
       "id": "component-privacy",
       "shortName": "Privacy",
       "name": "Component Privacy",
-      "category": "api",
+      "category": "security",
       "description": "Only the main solution package may be public in the Catalog.\n\nMark all sub-components private in manifest.yml:\n  registrationOptions:\n    isHidden: true\n\nAffects: individual scripts, add-ons, demo data, internal installers.\n\nSub-components appearing publicly clutter the Catalog.",
       "agent": "component-privacy-checker.agent.md",
       "agentStatus": "active",
