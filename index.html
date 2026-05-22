@@ -89,10 +89,10 @@ td.cell:hover .badge{transform:scale(1.15);filter:brightness(1.3)}
 .status-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
 
 /* ── TOOLTIP CARD ── */
-#tipcard{display:none;position:fixed;z-index:2000;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;max-width:290px;box-shadow:0 8px 24px rgba(0,0,0,.55);pointer-events:none;transition:opacity .1s}
+#tipcard{display:none;position:fixed;z-index:2000;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;max-width:290px;box-shadow:0 8px 24px rgba(0,0,0,.55);transition:opacity .1s}
 #tipcard.on{display:block}
 .tip-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:5px}
-.tip-desc{font-size:11px;color:var(--muted);line-height:1.55}
+.tip-desc{font-size:11px;color:var(--muted);line-height:1.6;white-space:pre-line}
 .tip-doc{font-size:10px;margin-top:8px;padding-top:7px;border-top:1px solid var(--border)}
 </style>
 </head>
@@ -267,26 +267,33 @@ function detail(sid,cid){
 function closeModal(){document.getElementById('ov').classList.remove('on');}
 // ── Tooltip card ────────────────────────────────────────────────────────────
 const _tip=document.getElementById('tipcard');
-document.addEventListener('mouseover',e=>{
-  const th=e.target.closest('[data-chkid]');
-  if(!th){_tip.classList.remove('on');return;}
+let _tipTimer=null;
+function _showTip(th){
+  clearTimeout(_tipTimer);
   const c=D?.checks?.find(x=>x.id===th.dataset.chkid);
   if(!c)return;
   _tip.querySelector('.tip-name').textContent=c.name;
   _tip.querySelector('.tip-desc').textContent=c.description||'';
   const docEl=_tip.querySelector('.tip-doc');
   docEl.innerHTML=c.docUrl
-    ?`<a href="${c.docUrl}" target="_blank" style="color:var(--blue);pointer-events:auto">📖 Existing guideline &rarr;</a>`
+    ?`<a href="${c.docUrl}" target="_blank" style="color:var(--blue)">📖 Existing guideline &rarr;</a>`
     :'';
   const rect=th.getBoundingClientRect();
   _tip.style.left=Math.min(rect.left,window.innerWidth-300)+'px';
   _tip.style.top=(rect.bottom+6)+'px';
   _tip.classList.add('on');
+}
+function _hideTip(){_tipTimer=setTimeout(()=>_tip.classList.remove('on'),120);}
+document.addEventListener('mouseover',e=>{
+  const th=e.target.closest('[data-chkid]');
+  if(th)_showTip(th);
 });
 document.addEventListener('mouseout',e=>{
   const th=e.target.closest('[data-chkid]');
-  if(th)_tip.classList.remove('on');
+  if(th)_hideTip();
 });
+_tip.addEventListener('mouseenter',()=>clearTimeout(_tipTimer));
+_tip.addEventListener('mouseleave',()=>_tip.classList.remove('on'));
 
 function maybeClose(e){if(e.target===document.getElementById('ov'))closeModal();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
