@@ -496,6 +496,16 @@
           "prUrl": "https://github.com/SkylineCommunications/SLC-S-MediaOps.Plan/pull/438",
           "updatedAt": "2026-05-22"
         }
+      },
+      "results": {
+        "catalog-doc": {
+          "status": "partial",
+          "summary": "2 warnings: non-standard Pricing heading, generic short_description in manifest",
+          "checkedAt": "2026-05-26",
+          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-MediaOps.Plan/catalog-doc.md",
+          "issueUrl": "https://github.com/SkylineCommunications/SLC-S-MediaOps.Plan/issues/470",
+          "prUrl": "https://github.com/SkylineCommunications/SLC-S-MediaOps.Plan/pull/471"
+        }
       }
     },
     {
