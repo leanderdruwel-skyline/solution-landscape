@@ -15,6 +15,15 @@
   --gray:#484f58;--gray-bg:#1c2128;
   --blue:#388bfd;--purple:#bc8cff;
 }
+[data-theme="light"]{
+  --bg:#f6f8fa;--surface:#ffffff;--surface2:#f0f2f5;--border:#d0d7de;
+  --text:#1f2328;--muted:#656d76;
+  --green:#1a7f37;--green-bg:#dafbe1;
+  --yellow:#9a6700;--yellow-bg:#fff8c5;
+  --red:#cf222e;--red-bg:#ffebe9;
+  --gray:#6e7781;--gray-bg:#f6f8fa;
+  --blue:#0969da;--purple:#8250df;
+}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;min-height:100vh}
 a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
 
@@ -114,6 +123,9 @@ td.cell:hover .badge{transform:scale(1.15);filter:brightness(1.3)}
   <div class="legend-item"><span class="badge fail" style="width:18px;height:18px;font-size:10px">✗</span> Fail</div>
   <div class="legend-item"><span class="badge unknown" style="width:18px;height:18px;font-size:10px">?</span> Not yet checked</div>
   <span class="toolbar-right" id="upd"></span>
+  <button id="theme-btn" onclick="toggleTheme()" style="margin-left:8px;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:5px">
+    <span id="theme-icon">☀️</span><span id="theme-label">Light</span>
+  </button>
 </div>
 
 <div class="wrap"><div id="matrix"></div></div>
@@ -142,7 +154,7 @@ function score(sol){
   const total=D.checks.length;
   let pts=0;
   D.checks.forEach(c=>{
-    const s=sol.checks?.[c.id]?.status||'unknown';
+    const s=sol.results?.[c.id]?.status||'unknown';
     if(s==='pass')pts+=2;
     if(s==='partial')pts+=1;
   });
@@ -161,12 +173,12 @@ function render(){
   const checks=D.checks.length;
   let pass=0,partial=0,fail=0,unk=0;
   D.solutions.forEach(s=>D.checks.forEach(c=>{
-    const st=s.checks?.[c.id]?.status||'unknown';
+    const st=s.results?.[c.id]?.status||'unknown';
     if(st==='pass')pass++;else if(st==='partial')partial++;
     else if(st==='fail')fail++;else unk++;
   }));
 
-  document.getElementById('sub').textContent=`${total} solutions · ${checks} checks · ${D.solutions.reduce((a,s)=>a+Object.keys(s.checks||{}).length,0)} results logged`;
+  document.getElementById('sub').textContent=`${total} solutions · ${checks} checks · ${D.solutions.reduce((a,s)=>a+Object.keys(s.results||{}).length,0)} results logged`;
   document.getElementById('upd').textContent=`Last updated: ${D.lastUpdated}`;
   document.getElementById('stats').innerHTML=
     `<div class="stat"><div class="stat-n" style="color:var(--green)">${pass}</div><div class="stat-l">Pass</div></div>`+
@@ -220,7 +232,7 @@ function render(){
     catOrder.forEach(cid=>{
       const checks=grouped[cid];if(!checks.length)return;
       checks.forEach(c=>{
-        const r=sol.checks?.[c.id];
+        const r=sol.results?.[c.id];
         const st=r?.status||'unknown';
         h+=`<td class="cell" style="background:${bg}" onclick="detail('${sol.id}','${c.id}')" title="${sol.name}: ${c.shortName} — ${LABEL[st]}">
           <div class="badge ${st}">${ICON[st]}</div>
@@ -239,7 +251,7 @@ function detail(sid,cid){
   const sol=D.solutions.find(s=>s.id===sid);
   const chk=D.checks.find(c=>c.id===cid);
   if(!sol||!chk)return;
-  const r=sol.checks?.[cid];
+  const r=sol.results?.[cid];
   const st=r?.status||'unknown';
   const cat=D.categories.find(c=>c.id===chk.category);
   const agTag=chk.agent
@@ -300,6 +312,33 @@ _tip.addEventListener('mouseleave',()=>_tip.classList.remove('on'));
 
 function maybeClose(e){if(e.target===document.getElementById('ov'))closeModal();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+function toggleTheme(){
+  const html=document.documentElement;
+  const isLight=html.getAttribute('data-theme')==='light';
+  if(isLight){
+    html.removeAttribute('data-theme');
+    document.getElementById('theme-icon').textContent='☀️';
+    document.getElementById('theme-label').textContent='Light';
+    localStorage.setItem('theme','dark');
+  } else {
+    html.setAttribute('data-theme','light');
+    document.getElementById('theme-icon').textContent='🌙';
+    document.getElementById('theme-label').textContent='Dark';
+    localStorage.setItem('theme','light');
+  }
+}
+// Restore saved theme preference
+(function(){
+  const t=localStorage.getItem('theme');
+  if(t==='light'){
+    document.documentElement.setAttribute('data-theme','light');
+    document.addEventListener('DOMContentLoaded',()=>{
+      document.getElementById('theme-icon').textContent='🌙';
+      document.getElementById('theme-label').textContent='Dark';
+    });
+  }
+})();
 
 init();
 </script>
