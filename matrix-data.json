@@ -103,6 +103,18 @@
       ]
     },
     {
+      "id": "dom-schema",
+      "name": "DOM Schema",
+      "shortName": "DOM",
+      "categoryId": "architecture",
+      "description": "Catalogues all DOM modules, definitions, section definitions, and fields in the solution.",
+      "agentStatus": "active",
+      "docUrls": [
+        "https://docs.dataminer.services/user-guide/Advanced_Modules/DOM/DOM.html",
+        "https://github.com/SkylineCommunications/_ReusableAgenticWorkflows/blob/main/agents/dom-schema-mapper.agent.md"
+      ]
+    },
+    {
       "id": "sdm-compliance",
       "shortName": "SDM",
       "name": "SDM Compliance",
