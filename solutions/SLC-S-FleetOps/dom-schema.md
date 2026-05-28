@@ -120,7 +120,7 @@
 
 | Query name | Primary module | Definitions | Join module | Join definitions |
 |------------|----------------|-------------|-------------|-----------------|
-| Fleet - Vehicle Info | `(slc)fleet_ops` | Vehicles | `—` | — |
+| Fleet - Vehicle Info | `(slc)fleet_ops` | Vehicles | `(slc)people_organizations` | (guid:1624a01d…) |
 | Pricing - Table View | `(slc)fleet_ops` | Pricing | `—` | — |
 | Get DOM Instances | `(slc)fleet_ops` | Vehicles | `—` | — |
 | Debug - ChargingData | `(slc)fleet_ops` | ChargingData | `—` | — |
