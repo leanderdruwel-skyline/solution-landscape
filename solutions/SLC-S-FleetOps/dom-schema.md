@@ -64,7 +64,7 @@
 
 | Field | Type |
 |-------|------|
-| _(section accessed, no individual fields captured)_ | — |
+| _(section accessed, individual fields not captured)_ | — |
 
 #### `Vehicle info`
 
@@ -97,7 +97,7 @@
 
 | Field | Type |
 |-------|------|
-| _(section accessed, no individual fields captured)_ | — |
+| _(section accessed, individual fields not captured)_ | — |
 
 #### `People information`
 
@@ -109,7 +109,7 @@
 
 | Field | Type |
 |-------|------|
-| _(section accessed, no individual fields captured)_ | — |
+| _(section accessed, individual fields not captured)_ | — |
 
 ---
 
@@ -127,7 +127,7 @@
 
 | Field | Type |
 |-------|------|
-| _(section accessed, no individual fields captured)_ | — |
+| _(section accessed, individual fields not captured)_ | — |
 
 #### `People information`
 
@@ -139,6 +139,18 @@
 
 | Field | Type |
 |-------|------|
-| _(section accessed, no individual fields captured)_ | — |
+| _(section accessed, individual fields not captured)_ | — |
 
 ---
+
+## Direct DOM access from Low-Code App
+
+> ⚠️ **These queries bypass the solution API and access DOM storage directly from the UI.**
+> This is discouraged — prefer reading data through UDAPI/GQI data sources exposed by the solution.
+
+| Query name | Module | DOM Definition |
+|------------|--------|---------------|
+| Fleet - Vehicle Info | `(slc)fleet_ops` | (guid:caad965e…) |
+| Pricing - Table View | `(slc)fleet_ops` | (guid:a7be9f25…) |
+| Get DOM Instances | `(slc)fleet_ops` | (guid:caad965e…) |
+| Debug - ChargingData | `(slc)fleet_ops` | (guid:f048bc08…) |
