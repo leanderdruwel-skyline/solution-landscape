@@ -647,8 +647,8 @@
       "results": {
         "dom-schema": {
           "status": "pass",
-          "summary": "1 module · 3 definitions · 7 section definitions · 41 fields",
-          "checkedAt": "2026-05-27",
+          "summary": "3 modules (1 owned, 2 cross-solution) · 15 sections · 40 fields",
+          "checkedAt": "2026-05-28",
           "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-FleetOps/dom-schema.md",
           "issueUrl": null,
           "prUrl": null
