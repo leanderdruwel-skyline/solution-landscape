@@ -91,17 +91,11 @@
 
 ### Sections accessed
 
-#### `Contract info`
+#### `Team`
 
 | Field | Type |
 |-------|------|
-| Driver | — |
-
-#### `Vehicle info`
-
-| Field | Type |
-|-------|------|
-| VIN | — |
+| _(section accessed; no individual fields captured)_ | — |
 
 ---
 
@@ -124,17 +118,22 @@
 > ⚠️ **These queries bypass the solution API and access DOM storage directly from the UI.**  
 > Prefer reading data through UDAPI/GQI data sources exposed by the solution.
 
-| Query name | Module | DOM Definition |
-|------------|--------|---------------|
-| Fleet - Vehicle Info | `(slc)fleet_ops` | Vehicles |
-| Pricing - Table View | `(slc)fleet_ops` | Pricing |
-| Get DOM Instances | `(slc)fleet_ops` | Vehicles |
-| Debug - ChargingData | `(slc)fleet_ops` | ChargingData |
+| Query name | Primary module | Definitions | Join module | Join definitions |
+|------------|----------------|-------------|-------------|-----------------|
+| Fleet - Vehicle Info | `(slc)fleet_ops` | Vehicles | `—` | — |
+| Pricing - Table View | `(slc)fleet_ops` | Pricing | `—` | — |
+| Get DOM Instances | `(slc)fleet_ops` | Vehicles | `—` | — |
+| Debug - ChargingData | `(slc)fleet_ops` | ChargingData | `—` | — |
 
 ## Scanner notes
 
 - **Owned module schema** (`(slc)fleet_ops`): sourced from install JSON (`DOM.zip`) — complete.
-- **Cross-solution modules**: sourced from code scan of DomCache/DomHelper variable assignments.
-  Field types are not available for cross-solution modules (not in this repo's install JSON).
-- **Limitation**: calls through higher-level helper objects (e.g. `fleetOpsHelper.GetFieldValue(...)`) 
-  are not traced when the helper wraps a DomCache internally. These are covered by the install JSON for owned modules.
+- **Cross-solution modules**: sourced from per-file code scan of DomCache/DomHelper variable assignments.
+  Module IDs are resolved from both string literals and `const string` references.
+- **Field types on cross-solution modules**: inferred from `GetFieldValue<T>` generic parameter.
+- **Owned-section filter**: sections whose names match owned-module sections are excluded from
+  cross-module attribution (prevents false attribution caused by variable shadowing in method parameters).
+- **LCA joins**: the scanner recurses into Join→On sub-queries to capture both sides of a join.
+- **Limitation**: calls through higher-level helper objects (e.g. `fleetOpsHelper.GetFieldValue(...)`)  
+  where the helper wraps a DomCache internally cannot be traced without data-flow analysis.  
+  These fields are fully covered by the owned module install JSON.
