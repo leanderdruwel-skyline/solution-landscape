@@ -150,7 +150,7 @@
 
 | Query name | Module | DOM Definition |
 |------------|--------|---------------|
-| Fleet - Vehicle Info | `(slc)fleet_ops` | (guid:caad965e…) |
-| Pricing - Table View | `(slc)fleet_ops` | (guid:a7be9f25…) |
-| Get DOM Instances | `(slc)fleet_ops` | (guid:caad965e…) |
-| Debug - ChargingData | `(slc)fleet_ops` | (guid:f048bc08…) |
+| Fleet - Vehicle Info | `(slc)fleet_ops` | Vehicles |
+| Pricing - Table View | `(slc)fleet_ops` | Pricing |
+| Get DOM Instances | `(slc)fleet_ops` | Vehicles |
+| Debug - ChargingData | `(slc)fleet_ops` | ChargingData |
