@@ -95,7 +95,7 @@
 
 | Field | Type |
 |-------|------|
-| _(section accessed; no individual fields captured)_ | — |
+| Team | Guid |
 
 ---
 
