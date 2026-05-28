@@ -5,7 +5,7 @@
 
 ---
 
-## Module: `(slc)fleet_ops` _(owned)_
+## Module: `(slc)fleet_ops` _(owned)_ — _schema from install JSON_
 
 ### Sections accessed
 
@@ -16,12 +16,10 @@
 | Address | String |
 | ChargingBookingId | String |
 | ChargingSpeed | Double |
-| ConnectionFee | — |
 | Cost | Double |
 | EndSoc | Double |
 | EndTime | DateTime |
 | Energy | Double |
-| EnergyCost | — |
 | EnergyInBattery | Double |
 | Latitude | Double |
 | Longitude | Double |
@@ -31,7 +29,6 @@
 | Source | String |
 | StartSoc | Double |
 | StartTime | DateTime |
-| TimeFee | — |
 | Type | Int32 |
 
 #### `Contract info`
@@ -64,7 +61,14 @@
 
 | Field | Type |
 |-------|------|
-| _(section accessed, individual fields not captured)_ | — |
+| Address | String |
+| Charging Type | Int32 |
+| Cost | Double |
+| End | DateTime |
+| Reimbursement | Boolean |
+| Start | DateTime |
+| Type | Int32 |
+| User | Guid |
 
 #### `Vehicle info`
 
@@ -83,70 +87,42 @@
 
 ---
 
-## Module: `(slc)people_organizations` _(cross-solution reference)_
+## Module: `(slc)people_organizations` _(cross-solution reference)_ — _fields from code scan_
 
 ### Sections accessed
 
-#### `Contact info`
+#### `Contract info`
 
 | Field | Type |
 |-------|------|
-| Email | — |
+| Driver | — |
 
-#### `Job info`
-
-| Field | Type |
-|-------|------|
-| _(section accessed, individual fields not captured)_ | — |
-
-#### `People information`
+#### `Vehicle info`
 
 | Field | Type |
 |-------|------|
-| Full name | — |
-
-#### `Team`
-
-| Field | Type |
-|-------|------|
-| _(section accessed, individual fields not captured)_ | — |
+| VIN | — |
 
 ---
 
-## Module: `(slc)workflow` _(cross-solution reference)_
+## Module: `(slc)workflow` _(cross-solution reference)_ — _fields from code scan_
 
 ### Sections accessed
-
-#### `Contact info`
-
-| Field | Type |
-|-------|------|
-| Email | — |
 
 #### `Job info`
 
 | Field | Type |
 |-------|------|
-| _(section accessed, individual fields not captured)_ | — |
-
-#### `People information`
-
-| Field | Type |
-|-------|------|
-| Full name | — |
-
-#### `Team`
-
-| Field | Type |
-|-------|------|
-| _(section accessed, individual fields not captured)_ | — |
+| Job end | — |
+| Job name | — |
+| Job start | — |
 
 ---
 
 ## Direct DOM access from Low-Code App
 
-> ⚠️ **These queries bypass the solution API and access DOM storage directly from the UI.**
-> This is discouraged — prefer reading data through UDAPI/GQI data sources exposed by the solution.
+> ⚠️ **These queries bypass the solution API and access DOM storage directly from the UI.**  
+> Prefer reading data through UDAPI/GQI data sources exposed by the solution.
 
 | Query name | Module | DOM Definition |
 |------------|--------|---------------|
@@ -154,3 +130,11 @@
 | Pricing - Table View | `(slc)fleet_ops` | Pricing |
 | Get DOM Instances | `(slc)fleet_ops` | Vehicles |
 | Debug - ChargingData | `(slc)fleet_ops` | ChargingData |
+
+## Scanner notes
+
+- **Owned module schema** (`(slc)fleet_ops`): sourced from install JSON (`DOM.zip`) — complete.
+- **Cross-solution modules**: sourced from code scan of DomCache/DomHelper variable assignments.
+  Field types are not available for cross-solution modules (not in this repo's install JSON).
+- **Limitation**: calls through higher-level helper objects (e.g. `fleetOpsHelper.GetFieldValue(...)`) 
+  are not traced when the helper wraps a DomCache internally. These are covered by the install JSON for owned modules.
