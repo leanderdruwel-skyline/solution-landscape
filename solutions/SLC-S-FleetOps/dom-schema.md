@@ -113,9 +113,9 @@
 
 | Field | Type |
 |-------|------|
-| Job end | — |
-| Job name | — |
-| Job start | — |
+| Job end | DateTime |
+| Job name | String |
+| Job start | DateTime |
 
 ---
 
