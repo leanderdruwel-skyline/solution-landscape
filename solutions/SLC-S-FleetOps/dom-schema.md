@@ -118,12 +118,12 @@
 > ⚠️ **These queries bypass the solution API and access DOM storage directly from the UI.**  
 > Prefer reading data through UDAPI/GQI data sources exposed by the solution.
 
-| Query name | Primary module | Definitions | Join module | Join definitions |
-|------------|----------------|-------------|-------------|-----------------|
-| Fleet - Vehicle Info | `(slc)fleet_ops` | Vehicles | `(slc)people_organizations` | (guid:1624a01d…) |
-| Pricing - Table View | `(slc)fleet_ops` | Pricing | `—` | — |
-| Get DOM Instances | `(slc)fleet_ops` | Vehicles | `—` | — |
-| Debug - ChargingData | `(slc)fleet_ops` | ChargingData | `—` | — |
+| Query name | Primary module | Definitions | Join module | Join definitions | Join columns |
+|------------|----------------|-------------|-------------|-----------------|--------------|
+| Fleet - Vehicle Info | `(slc)fleet_ops` | Vehicles | `(slc)people_organizations` | (guid:1624a01d…) | Name, ID |
+| Pricing - Table View | `(slc)fleet_ops` | Pricing | — | — | — |
+| Get DOM Instances | `(slc)fleet_ops` | Vehicles | — | — | — |
+| Debug - ChargingData | `(slc)fleet_ops` | ChargingData | — | — | — |
 
 ## Scanner notes
 
@@ -133,7 +133,13 @@
 - **Field types on cross-solution modules**: inferred from `GetFieldValue<T>` generic parameter.
 - **Owned-section filter**: sections whose names match owned-module sections are excluded from
   cross-module attribution (prevents false attribution caused by variable shadowing in method parameters).
-- **LCA joins**: the scanner recurses into Join→On sub-queries to capture both sides of a join.
-- **Limitation**: calls through higher-level helper objects (e.g. `fleetOpsHelper.GetFieldValue(...)`)  
-  where the helper wraps a DomCache internally cannot be traced without data-flow analysis.  
-  These fields are fully covered by the owned module install JSON.
+- **LCA joins**: the scanner recurses into Join→On sub-queries to capture both sides of a join,
+  including column names selected from the joined source.
+- **Definition GUID resolution**: definition names can only be resolved for modules installed by this
+  solution (`(slc)fleet_ops`). GUIDs from cross-solution modules show as `(guid:…)` because resolving
+  them requires reading the owning solution's install JSON.
+- **Single-arg `GetFieldDescriptorByName`** (called on a section definition variable, not the DomCache)
+  is not captured. Example: `teamSd.GetFieldDescriptorByName("Team")` — section is known (`Team`),
+  field name and type require additional regex tracking of section-definition variables.
+- **Higher-level wrapper helpers** (e.g. `fleetOpsHelper.GetFieldValue(...)`) cannot be traced via
+  variable names alone. These are covered by the owned module install JSON.
