@@ -647,7 +647,7 @@
       "results": {
         "dom-schema": {
           "status": "partial",
-          "summary": "3 modules (1 owned, 2 cross-solution) · 10 sections · 46 fields · 4 direct LCA queries",
+          "summary": "3 modules (1 owned, 2 cross-solution) · 9 sections · 44 fields · 4 direct LCA queries",
           "checkedAt": "2026-05-28",
           "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-FleetOps/dom-schema.md",
           "issueUrl": null,
