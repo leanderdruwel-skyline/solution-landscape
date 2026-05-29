@@ -493,6 +493,14 @@
           "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/naming-convention.md",
           "issueUrl": "https://github.com/SkylineCommunications/SLC-S-InfraOps/issues/74",
           "prUrl": null
+        },
+        "dom-schema": {
+          "status": "partial",
+          "summary": "1 modules (1 installed, 0 not installed here) · 4 sections · 10 fields · 73 direct LCA queries",
+          "checkedAt": "2026-05-29",
+          "reportUrl": "https://github.com/leanderdruwel-skyline/solution-landscape/blob/main/solutions/SLC-S-InfraOps/dom-schema.md",
+          "issueUrl": null,
+          "prUrl": null
         }
       }
     },
