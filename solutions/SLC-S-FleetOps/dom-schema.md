@@ -13,49 +13,52 @@
 
 | Field | Type | Source |
 |-------|------|--------|
-| Address | String | JSON only |
-| ChargingBookingId | String | JSON only |
-| ChargingSpeed | Double | JSON only |
-| Cost | Double | JSON only |
-| EndSoc | Double | JSON only |
+| Address | String | JSON + code |
+| ChargingBookingId | String | JSON + code |
+| ChargingSpeed | Double | JSON + code |
+| ConnectionFee | — | ⚠️ code only (not in install JSON) |
+| Cost | Double | JSON + code |
+| EndSoc | Double | JSON + code |
 | EndTime | DateTime | JSON + code |
-| Energy | Double | JSON only |
-| EnergyInBattery | Double | JSON only |
-| Latitude | Double | JSON only |
-| Longitude | Double | JSON only |
-| Mileage | Double | JSON only |
-| PriceFromApp | Boolean | JSON only |
-| Reimbursement | Boolean | JSON only |
-| Source | String | JSON only |
-| StartSoc | Double | JSON only |
+| Energy | Double | JSON + code |
+| EnergyCost | — | ⚠️ code only (not in install JSON) |
+| EnergyInBattery | Double | JSON + code |
+| Latitude | Double | JSON + code |
+| Longitude | Double | JSON + code |
+| Mileage | Double | JSON + code |
+| PriceFromApp | Boolean | JSON + code |
+| Reimbursement | Boolean | JSON + code |
+| Source | String | JSON + code |
+| StartSoc | Double | JSON + code |
 | StartTime | DateTime | JSON + code |
-| Type | Int32 | JSON only |
+| TimeFee | — | ⚠️ code only (not in install JSON) |
+| Type | Int32 | JSON + code |
 
 #### `Contract info`
 
 | Field | Type | Source |
 |-------|------|--------|
-| Driver | Guid | JSON only |
-| End date | DateTime | JSON only |
-| Start date | DateTime | JSON only |
+| Driver | Guid | JSON + code |
+| End date | DateTime | JSON + code |
+| Start date | DateTime | JSON + code |
 
 #### `Financial info`
 
 | Field | Type | Source |
 |-------|------|--------|
-| BIK | Double | JSON only |
-| CO2 tax | Double | JSON only |
-| Fiscal value | Double | JSON only |
-| Lease cost | Double | JSON only |
-| Tax deductibility | Double | JSON only |
+| BIK | Double | JSON + code |
+| CO2 tax | Double | JSON + code |
+| Fiscal value | Double | JSON + code |
+| Lease cost | Double | JSON + code |
+| Tax deductibility | Double | JSON + code |
 
 #### `Monitoring info`
 
 | Field | Type | Source |
 |-------|------|--------|
-| Clearance id | String | JSON only |
-| Monitoring level | Int32 | JSON only |
-| Monitoring state | Int32 | JSON only |
+| Clearance id | String | JSON + code |
+| Monitoring level | Int32 | JSON + code |
+| Monitoring state | Int32 | JSON + code |
 
 #### `Pricing`
 
@@ -74,8 +77,8 @@
 
 | Field | Type | Source |
 |-------|------|--------|
-| License plate | String | JSON only |
-| Make | Int32 | JSON only |
+| License plate | String | JSON + code |
+| Make | Int32 | JSON + code |
 | Status | Int32 | JSON + code |
 | VIN | String | JSON + code |
 
@@ -83,7 +86,7 @@
 
 | Field | Type | Source |
 |-------|------|--------|
-| Id | String | JSON only |
+| Id | String | JSON + code |
 
 ---
 
