@@ -5,126 +5,129 @@
 
 ---
 
-## Module: `(slc)fleet_ops` _(installed by this solution)_ — _schema from install JSON + code scan_
+## Module: `(slc)fleet_ops`
+**Install method**: JSON — _schema from install JSON + code scan_
 
 ### Sections accessed
 
 #### `ChargingData`
 
-| Field | Type | Source |
-|-------|------|--------|
-| Address | String | install JSON + code |
-| ChargingBookingId | String | install JSON + code |
-| ChargingSpeed | Double | install JSON + code |
-| ConnectionFee | — | ⚠️ code only (not in install JSON) |
-| Cost | Double | install JSON + code |
-| EndSoc | Double | install JSON + code |
-| EndTime | DateTime | install JSON + code |
-| Energy | Double | install JSON + code |
-| EnergyCost | — | ⚠️ code only (not in install JSON) |
-| EnergyInBattery | Double | install JSON + code |
-| Latitude | Double | install JSON + code |
-| Longitude | Double | install JSON + code |
-| Mileage | Double | install JSON + code |
-| PriceFromApp | Boolean | install JSON + code |
-| Reimbursement | Boolean | install JSON + code |
-| Source | String | install JSON + code |
-| StartSoc | Double | install JSON + code |
-| StartTime | DateTime | install JSON + code |
-| TimeFee | — | ⚠️ code only (not in install JSON) |
-| Type | Int32 | install JSON + code |
+| Field | Type | Created by |
+|-------|------|------------|
+| Address | String | JSON |
+| ChargingBookingId | String | JSON |
+| ChargingSpeed | Double | JSON |
+| ConnectionFee | — | ⚠️ not in install JSON |
+| Cost | Double | JSON |
+| EndSoc | Double | JSON |
+| EndTime | DateTime | JSON |
+| Energy | Double | JSON |
+| EnergyCost | — | ⚠️ not in install JSON |
+| EnergyInBattery | Double | JSON |
+| Latitude | Double | JSON |
+| Longitude | Double | JSON |
+| Mileage | Double | JSON |
+| PriceFromApp | Boolean | JSON |
+| Reimbursement | Boolean | JSON |
+| Source | String | JSON |
+| StartSoc | Double | JSON |
+| StartTime | DateTime | JSON |
+| TimeFee | — | ⚠️ not in install JSON |
+| Type | Int32 | JSON |
 
 #### `Contract info`
 
-| Field | Type | Source |
-|-------|------|--------|
-| Driver | Guid | install JSON + code |
-| End date | DateTime | install JSON + code |
-| Start date | DateTime | install JSON + code |
+| Field | Type | Created by |
+|-------|------|------------|
+| Driver | Guid | JSON |
+| End date | DateTime | JSON |
+| Start date | DateTime | JSON |
 
 #### `Financial info`
 
-| Field | Type | Source |
-|-------|------|--------|
-| BIK | Double | install JSON + code |
-| CO2 tax | Double | install JSON + code |
-| Fiscal value | Double | install JSON + code |
-| Lease cost | Double | install JSON + code |
-| Tax deductibility | Double | install JSON + code |
+| Field | Type | Created by |
+|-------|------|------------|
+| BIK | Double | JSON |
+| CO2 tax | Double | JSON |
+| Fiscal value | Double | JSON |
+| Lease cost | Double | JSON |
+| Tax deductibility | Double | JSON |
 
 #### `Monitoring info`
 
-| Field | Type | Source |
-|-------|------|--------|
-| Clearance id | String | install JSON + code |
-| Monitoring level | Int32 | install JSON + code |
-| Monitoring state | Int32 | install JSON + code |
+| Field | Type | Created by |
+|-------|------|------------|
+| Clearance id | String | JSON |
+| Monitoring level | Int32 | JSON |
+| Monitoring state | Int32 | JSON |
 
 #### `Pricing`
 
-| Field | Type | Source |
-|-------|------|--------|
-| Address | String | install JSON only |
-| Charging Type | Int32 | install JSON only |
-| Cost | Double | install JSON only |
-| End | DateTime | install JSON only |
-| Reimbursement | Boolean | install JSON only |
-| Start | DateTime | install JSON only |
-| Type | Int32 | install JSON only |
-| User | Guid | install JSON only |
+| Field | Type | Created by |
+|-------|------|------------|
+| Address | String | JSON |
+| Charging Type | Int32 | JSON |
+| Cost | Double | JSON |
+| End | DateTime | JSON |
+| Reimbursement | Boolean | JSON |
+| Start | DateTime | JSON |
+| Type | Int32 | JSON |
+| User | Guid | JSON |
 
 #### `Vehicle info`
 
-| Field | Type | Source |
-|-------|------|--------|
-| License plate | String | install JSON + code |
-| Make | Int32 | install JSON + code |
-| Status | Int32 | install JSON + code |
-| VIN | String | install JSON + code |
+| Field | Type | Created by |
+|-------|------|------------|
+| License plate | String | JSON |
+| Make | Int32 | JSON |
+| Status | Int32 | JSON |
+| VIN | String | JSON |
 
 #### `VehicleId`
 
-| Field | Type | Source |
-|-------|------|--------|
-| Id | String | install JSON + code |
+| Field | Type | Created by |
+|-------|------|------------|
+| Id | String | JSON |
 
 ---
 
-## Module: `(slc)people_organizations` _(not installed by this solution)_ — _fields from code scan only_
+## Module: `(slc)people_organizations`
+**Install method**: not installed here — _fields from code scan only_
 
 ### Sections accessed
 
 #### `Contact info`
 
-| Field | Type |
-|-------|------|
-| Email | — |
+| Field | Type | Created by |
+|-------|------|------------|
+| Email | — | not installed here |
 
 #### `People information`
 
-| Field | Type |
-|-------|------|
-| Full name | — |
+| Field | Type | Created by |
+|-------|------|------------|
+| Full name | — | not installed here |
 
 #### `Team`
 
-| Field | Type |
-|-------|------|
-| Team | Guid |
+| Field | Type | Created by |
+|-------|------|------------|
+| Team | Guid | not installed here |
 
 ---
 
-## Module: `(slc)workflow` _(not installed by this solution)_ — _fields from code scan only_
+## Module: `(slc)workflow`
+**Install method**: not installed here — _fields from code scan only_
 
 ### Sections accessed
 
 #### `Job info`
 
-| Field | Type |
-|-------|------|
-| Job end | DateTime |
-| Job name | String |
-| Job start | DateTime |
+| Field | Type | Created by |
+|-------|------|------------|
+| Job end | DateTime | not installed here |
+| Job name | String | not installed here |
+| Job start | DateTime | not installed here |
 
 ---
 
