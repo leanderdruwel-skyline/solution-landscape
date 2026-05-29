@@ -19,6 +19,7 @@
 | ChargingSpeed | Double | Back + Frontend | JSON |
 | ConnectionFee | — | Backend | ⚠️ not in install package |
 | Cost | Double | Back + Frontend | JSON |
+| Country | — | Backend | ⚠️ not in install package |
 | EndSoc | Double | Back + Frontend | JSON |
 | EndTime | DateTime | Back + Frontend | JSON |
 | Energy | Double | Back + Frontend | JSON |
@@ -145,20 +146,12 @@
 
 ## Scanner notes
 
-- **Modules installed by this solution** (`(slc)fleet_ops`): schema sourced from install JSON (`DOM.zip`) merged with code scan.
-  Fields in code but not in install JSON are flagged as `⚠️ code only`.
-- **Modules not installed here**: sourced from code scan only (DomCache/DomHelper variable assignments).
-  Module IDs resolved from string literals, `const string` references, and class property initializers.
-- **Field types on cross-solution modules**: inferred from `GetFieldValue<T>` generic parameter.
-- **Owned-section filter**: sections whose names match owned-module sections are excluded from
-  cross-module attribution (prevents false attribution caused by variable shadowing in method parameters).
-- **LCA joins**: the scanner recurses into Join→On sub-queries to capture both sides of a join,
-  including column names selected from the joined source.
-- **Definition GUID resolution**: definition names can only be resolved for modules installed by this
-  solution (`(slc)fleet_ops`). GUIDs from cross-solution modules show as `(guid:…)` because resolving
-  them requires reading the owning solution's install JSON.
-- **Single-arg `GetFieldDescriptorByName`** (called on a section definition variable, not the DomCache)
-  is not captured. Example: `teamSd.GetFieldDescriptorByName("Team")` — section is known (`Team`),
-  field name and type require additional regex tracking of section-definition variables.
-- **Higher-level wrapper helpers** (e.g. `fleetOpsHelper.GetFieldValue(...)`) cannot be traced via
-  variable names alone. These are covered by the owned module install JSON.
+- **Pattern A (FleetOps-style)**: modules resolved from `new DomCache/DomHelper(..., "moduleId")` in code.
+  Fields via `GetSectionDefinitionByName` / `GetFieldDescriptorByName` / `GetFieldValue<T>`.
+- **Pattern B (InfraOps-style)**: modules + schema from `DomIds.cs` / `GeneratedDomIds.cs`.
+  Access via `ModuleClass.Sections.SectionName.FieldName` typed constants.
+- **Pre-filter**: only .cs files containing DOM-related keywords are deep-scanned.
+- **Direct access**: Backend = accessed in C# code; Frontend = queried by LCA GQI; None = defined but not accessed.
+- **Created by**: JSON = in install JSON; code = in DomIds.cs or code-create patterns; ⚠️ = code-accessed but not in install package.
+- **LCA field mapping**: fields from all sections linked to the queried definition are marked Frontend.
+  For typed-pattern modules without JSON section links, all fields of the module are considered reachable.
