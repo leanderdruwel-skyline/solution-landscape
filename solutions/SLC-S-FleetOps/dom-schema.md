@@ -6,128 +6,128 @@
 ---
 
 ## Module: `(slc)fleet_ops`
-**Install method**: JSON — _schema from install JSON + code scan_
+**Created by**: JSON — _schema from install JSON + code scan_
 
 ### Sections accessed
 
 #### `ChargingData`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| Address | String | JSON |
-| ChargingBookingId | String | JSON |
-| ChargingSpeed | Double | JSON |
-| ConnectionFee | — | ⚠️ not in install JSON |
-| Cost | Double | JSON |
-| EndSoc | Double | JSON |
-| EndTime | DateTime | JSON |
-| Energy | Double | JSON |
-| EnergyCost | — | ⚠️ not in install JSON |
-| EnergyInBattery | Double | JSON |
-| Latitude | Double | JSON |
-| Longitude | Double | JSON |
-| Mileage | Double | JSON |
-| PriceFromApp | Boolean | JSON |
-| Reimbursement | Boolean | JSON |
-| Source | String | JSON |
-| StartSoc | Double | JSON |
-| StartTime | DateTime | JSON |
-| TimeFee | — | ⚠️ not in install JSON |
-| Type | Int32 | JSON |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| Address | String | Backend | JSON |
+| ChargingBookingId | String | Backend | JSON |
+| ChargingSpeed | Double | Backend | JSON |
+| ConnectionFee | — | Backend | ⚠️ not in install package |
+| Cost | Double | Backend | JSON |
+| EndSoc | Double | Backend | JSON |
+| EndTime | DateTime | Backend | JSON |
+| Energy | Double | Backend | JSON |
+| EnergyCost | — | Backend | ⚠️ not in install package |
+| EnergyInBattery | Double | Backend | JSON |
+| Latitude | Double | Backend | JSON |
+| Longitude | Double | Backend | JSON |
+| Mileage | Double | Backend | JSON |
+| PriceFromApp | Boolean | Backend | JSON |
+| Reimbursement | Boolean | Backend | JSON |
+| Source | String | Backend | JSON |
+| StartSoc | Double | Backend | JSON |
+| StartTime | DateTime | Backend | JSON |
+| TimeFee | — | Backend | ⚠️ not in install package |
+| Type | Int32 | Backend | JSON |
 
 #### `Contract info`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| Driver | Guid | JSON |
-| End date | DateTime | JSON |
-| Start date | DateTime | JSON |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| Driver | Guid | Backend | JSON |
+| End date | DateTime | Backend | JSON |
+| Start date | DateTime | Backend | JSON |
 
 #### `Financial info`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| BIK | Double | JSON |
-| CO2 tax | Double | JSON |
-| Fiscal value | Double | JSON |
-| Lease cost | Double | JSON |
-| Tax deductibility | Double | JSON |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| BIK | Double | Backend | JSON |
+| CO2 tax | Double | Backend | JSON |
+| Fiscal value | Double | Backend | JSON |
+| Lease cost | Double | Backend | JSON |
+| Tax deductibility | Double | Backend | JSON |
 
 #### `Monitoring info`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| Clearance id | String | JSON |
-| Monitoring level | Int32 | JSON |
-| Monitoring state | Int32 | JSON |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| Clearance id | String | Backend | JSON |
+| Monitoring level | Int32 | Backend | JSON |
+| Monitoring state | Int32 | Backend | JSON |
 
 #### `Pricing`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| Address | String | JSON |
-| Charging Type | Int32 | JSON |
-| Cost | Double | JSON |
-| End | DateTime | JSON |
-| Reimbursement | Boolean | JSON |
-| Start | DateTime | JSON |
-| Type | Int32 | JSON |
-| User | Guid | JSON |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| Address | String | None | JSON |
+| Charging Type | Int32 | None | JSON |
+| Cost | Double | None | JSON |
+| End | DateTime | None | JSON |
+| Reimbursement | Boolean | None | JSON |
+| Start | DateTime | None | JSON |
+| Type | Int32 | None | JSON |
+| User | Guid | None | JSON |
 
 #### `Vehicle info`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| License plate | String | JSON |
-| Make | Int32 | JSON |
-| Status | Int32 | JSON |
-| VIN | String | JSON |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| License plate | String | Backend | JSON |
+| Make | Int32 | Backend | JSON |
+| Status | Int32 | Backend | JSON |
+| VIN | String | Backend | JSON |
 
 #### `VehicleId`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| Id | String | JSON |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| Id | String | Backend | JSON |
 
 ---
 
 ## Module: `(slc)people_organizations`
-**Install method**: not installed here — _fields from code scan only_
+**Created by**: not installed here — _fields from code scan only_
 
 ### Sections accessed
 
 #### `Contact info`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| Email | — | not installed here |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| Email | — | Backend | None |
 
 #### `People information`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| Full name | — | not installed here |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| Full name | — | Backend | None |
 
 #### `Team`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| Team | Guid | not installed here |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| Team | Guid | Backend | None |
 
 ---
 
 ## Module: `(slc)workflow`
-**Install method**: not installed here — _fields from code scan only_
+**Created by**: not installed here — _fields from code scan only_
 
 ### Sections accessed
 
 #### `Job info`
 
-| Field | Type | Created by |
-|-------|------|------------|
-| Job end | DateTime | not installed here |
-| Job name | String | not installed here |
-| Job start | DateTime | not installed here |
+| Field | Type | Direct access | Created by |
+|-------|------|---------------|------------|
+| Job end | DateTime | Backend | None |
+| Job name | String | Backend | None |
+| Job start | DateTime | Backend | None |
 
 ---
 
@@ -136,12 +136,12 @@
 > ⚠️ **These queries bypass the solution API and access DOM storage directly from the UI.**  
 > Prefer reading data through UDAPI/GQI data sources exposed by the solution.
 
-| Query name | Primary module | Definitions | Join module | Join definitions | Join columns |
-|------------|----------------|-------------|-------------|-----------------|--------------|
-| Fleet - Vehicle Info | `(slc)fleet_ops` | Vehicles | `(slc)people_organizations` | (guid:1624a01d…) | Name, ID |
-| Pricing - Table View | `(slc)fleet_ops` | Pricing | — | — | — |
-| Get DOM Instances | `(slc)fleet_ops` | Vehicles | — | — | — |
-| Debug - ChargingData | `(slc)fleet_ops` | ChargingData | — | — | — |
+| Query name | Module | Definitions | Columns selected | Join module | Join definitions | Join columns |
+|------------|--------|-------------|-----------------|-------------|-----------------|--------------|
+| Fleet - Vehicle Info | `(slc)fleet_ops` | Vehicles | c8257ec1-1882-46f5-8d5b-d84a0f689d2e, Name, 02e0ad14-b667-4699-a630-a260e072c0c5, fda2373c-c14e-4a9a-abdc-14901fc93202, 61771564-baf5-477d-b498-3da26e6650bd, ID, 4c4508c2-4bdc-4320-8f0e-83ea4994329c, 5f6ddb66-1b46-41ed-a211-2043f1d56a5a, Connectivity, Request, Consumption | — | — | — |
+| Pricing - Table View | `(slc)fleet_ops` | Pricing | Name, 39ffda91-b7cb-483c-9ef9-02f2def55898, 5f95f666-c862-4b2d-8d08-df1aded28595, 90073dd0-6323-4f3a-b3b4-1e68605d1a2c, 1ec670dc-2070-40aa-9620-a4fe440eed34, 0acb352e-de96-4ab1-b46a-d4aaab31c62b, e99e83e1-4225-4513-9f76-c64aef1138e7, 1621fd7d-eff3-4827-8296-573cf8d08dc0, a48a361c-cd0c-4979-9a1f-7838c729fec6 | — | — | — |
+| Get DOM Instances | `(slc)fleet_ops` | Vehicles | (all) | — | — | — |
+| Debug - ChargingData | `(slc)fleet_ops` | ChargingData | (all) | — | — | — |
 
 ## Scanner notes
 
