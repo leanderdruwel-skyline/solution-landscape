@@ -91,6 +91,18 @@
 
 ### Sections accessed
 
+#### `Contact info`
+
+| Field | Type |
+|-------|------|
+| Email | — |
+
+#### `People information`
+
+| Field | Type |
+|-------|------|
+| Full name | — |
+
 #### `Team`
 
 | Field | Type |
