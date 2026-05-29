@@ -1,11 +1,11 @@
 # DOM Schema — SLC-S-FleetOps
 **Generated**: 2026-05-29
 **Repository**: https://github.com/SkylineCommunications/SLC-S-FleetOps
-**Modules accessed**: 3 (1 owned, 2 cross-solution reference)
+**Modules accessed**: 3 (1 installed by this solution, 2 not installed here)
 
 ---
 
-## Module: `(slc)fleet_ops` _(owned)_ — _schema from install JSON_
+## Module: `(slc)fleet_ops` _(installed by this solution)_ — _schema from install JSON + code scan_
 
 ### Sections accessed
 
@@ -13,84 +13,84 @@
 
 | Field | Type | Source |
 |-------|------|--------|
-| Address | String | JSON + code |
-| ChargingBookingId | String | JSON + code |
-| ChargingSpeed | Double | JSON + code |
+| Address | String | install JSON + code |
+| ChargingBookingId | String | install JSON + code |
+| ChargingSpeed | Double | install JSON + code |
 | ConnectionFee | — | ⚠️ code only (not in install JSON) |
-| Cost | Double | JSON + code |
-| EndSoc | Double | JSON + code |
-| EndTime | DateTime | JSON + code |
-| Energy | Double | JSON + code |
+| Cost | Double | install JSON + code |
+| EndSoc | Double | install JSON + code |
+| EndTime | DateTime | install JSON + code |
+| Energy | Double | install JSON + code |
 | EnergyCost | — | ⚠️ code only (not in install JSON) |
-| EnergyInBattery | Double | JSON + code |
-| Latitude | Double | JSON + code |
-| Longitude | Double | JSON + code |
-| Mileage | Double | JSON + code |
-| PriceFromApp | Boolean | JSON + code |
-| Reimbursement | Boolean | JSON + code |
-| Source | String | JSON + code |
-| StartSoc | Double | JSON + code |
-| StartTime | DateTime | JSON + code |
+| EnergyInBattery | Double | install JSON + code |
+| Latitude | Double | install JSON + code |
+| Longitude | Double | install JSON + code |
+| Mileage | Double | install JSON + code |
+| PriceFromApp | Boolean | install JSON + code |
+| Reimbursement | Boolean | install JSON + code |
+| Source | String | install JSON + code |
+| StartSoc | Double | install JSON + code |
+| StartTime | DateTime | install JSON + code |
 | TimeFee | — | ⚠️ code only (not in install JSON) |
-| Type | Int32 | JSON + code |
+| Type | Int32 | install JSON + code |
 
 #### `Contract info`
 
 | Field | Type | Source |
 |-------|------|--------|
-| Driver | Guid | JSON + code |
-| End date | DateTime | JSON + code |
-| Start date | DateTime | JSON + code |
+| Driver | Guid | install JSON + code |
+| End date | DateTime | install JSON + code |
+| Start date | DateTime | install JSON + code |
 
 #### `Financial info`
 
 | Field | Type | Source |
 |-------|------|--------|
-| BIK | Double | JSON + code |
-| CO2 tax | Double | JSON + code |
-| Fiscal value | Double | JSON + code |
-| Lease cost | Double | JSON + code |
-| Tax deductibility | Double | JSON + code |
+| BIK | Double | install JSON + code |
+| CO2 tax | Double | install JSON + code |
+| Fiscal value | Double | install JSON + code |
+| Lease cost | Double | install JSON + code |
+| Tax deductibility | Double | install JSON + code |
 
 #### `Monitoring info`
 
 | Field | Type | Source |
 |-------|------|--------|
-| Clearance id | String | JSON + code |
-| Monitoring level | Int32 | JSON + code |
-| Monitoring state | Int32 | JSON + code |
+| Clearance id | String | install JSON + code |
+| Monitoring level | Int32 | install JSON + code |
+| Monitoring state | Int32 | install JSON + code |
 
 #### `Pricing`
 
 | Field | Type | Source |
 |-------|------|--------|
-| Address | String | JSON only |
-| Charging Type | Int32 | JSON only |
-| Cost | Double | JSON only |
-| End | DateTime | JSON only |
-| Reimbursement | Boolean | JSON only |
-| Start | DateTime | JSON only |
-| Type | Int32 | JSON only |
-| User | Guid | JSON only |
+| Address | String | install JSON only |
+| Charging Type | Int32 | install JSON only |
+| Cost | Double | install JSON only |
+| End | DateTime | install JSON only |
+| Reimbursement | Boolean | install JSON only |
+| Start | DateTime | install JSON only |
+| Type | Int32 | install JSON only |
+| User | Guid | install JSON only |
 
 #### `Vehicle info`
 
 | Field | Type | Source |
 |-------|------|--------|
-| License plate | String | JSON + code |
-| Make | Int32 | JSON + code |
-| Status | Int32 | JSON + code |
-| VIN | String | JSON + code |
+| License plate | String | install JSON + code |
+| Make | Int32 | install JSON + code |
+| Status | Int32 | install JSON + code |
+| VIN | String | install JSON + code |
 
 #### `VehicleId`
 
 | Field | Type | Source |
 |-------|------|--------|
-| Id | String | JSON + code |
+| Id | String | install JSON + code |
 
 ---
 
-## Module: `(slc)people_organizations` _(cross-solution reference)_ — _fields from code scan_
+## Module: `(slc)people_organizations` _(not installed by this solution)_ — _fields from code scan only_
 
 ### Sections accessed
 
@@ -114,7 +114,7 @@
 
 ---
 
-## Module: `(slc)workflow` _(cross-solution reference)_ — _fields from code scan_
+## Module: `(slc)workflow` _(not installed by this solution)_ — _fields from code scan only_
 
 ### Sections accessed
 
@@ -142,9 +142,10 @@
 
 ## Scanner notes
 
-- **Owned module schema** (`(slc)fleet_ops`): sourced from install JSON (`DOM.zip`) — complete.
-- **Cross-solution modules**: sourced from per-file code scan of DomCache/DomHelper variable assignments.
-  Module IDs are resolved from both string literals and `const string` references.
+- **Modules installed by this solution** (`(slc)fleet_ops`): schema sourced from install JSON (`DOM.zip`) merged with code scan.
+  Fields in code but not in install JSON are flagged as `⚠️ code only`.
+- **Modules not installed here**: sourced from code scan only (DomCache/DomHelper variable assignments).
+  Module IDs resolved from string literals, `const string` references, and class property initializers.
 - **Field types on cross-solution modules**: inferred from `GetFieldValue<T>` generic parameter.
 - **Owned-section filter**: sections whose names match owned-module sections are excluded from
   cross-module attribution (prevents false attribution caused by variable shadowing in method parameters).
