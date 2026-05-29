@@ -14,80 +14,80 @@
 
 | Field | Type | Direct access | Created by |
 |-------|------|---------------|------------|
-| Address | String | Backend | JSON |
-| ChargingBookingId | String | Backend | JSON |
-| ChargingSpeed | Double | Backend | JSON |
+| Address | String | Back + Frontend | JSON |
+| ChargingBookingId | String | Back + Frontend | JSON |
+| ChargingSpeed | Double | Back + Frontend | JSON |
 | ConnectionFee | — | Backend | ⚠️ not in install package |
-| Cost | Double | Backend | JSON |
-| EndSoc | Double | Backend | JSON |
-| EndTime | DateTime | Backend | JSON |
-| Energy | Double | Backend | JSON |
+| Cost | Double | Back + Frontend | JSON |
+| EndSoc | Double | Back + Frontend | JSON |
+| EndTime | DateTime | Back + Frontend | JSON |
+| Energy | Double | Back + Frontend | JSON |
 | EnergyCost | — | Backend | ⚠️ not in install package |
-| EnergyInBattery | Double | Backend | JSON |
-| Latitude | Double | Backend | JSON |
-| Longitude | Double | Backend | JSON |
-| Mileage | Double | Backend | JSON |
-| PriceFromApp | Boolean | Backend | JSON |
-| Reimbursement | Boolean | Backend | JSON |
-| Source | String | Backend | JSON |
-| StartSoc | Double | Backend | JSON |
-| StartTime | DateTime | Backend | JSON |
+| EnergyInBattery | Double | Back + Frontend | JSON |
+| Latitude | Double | Back + Frontend | JSON |
+| Longitude | Double | Back + Frontend | JSON |
+| Mileage | Double | Back + Frontend | JSON |
+| PriceFromApp | Boolean | Back + Frontend | JSON |
+| Reimbursement | Boolean | Back + Frontend | JSON |
+| Source | String | Back + Frontend | JSON |
+| StartSoc | Double | Back + Frontend | JSON |
+| StartTime | DateTime | Back + Frontend | JSON |
 | TimeFee | — | Backend | ⚠️ not in install package |
-| Type | Int32 | Backend | JSON |
+| Type | Int32 | Back + Frontend | JSON |
 
 #### `Contract info`
 
 | Field | Type | Direct access | Created by |
 |-------|------|---------------|------------|
-| Driver | Guid | Backend | JSON |
-| End date | DateTime | Backend | JSON |
-| Start date | DateTime | Backend | JSON |
+| Driver | Guid | Back + Frontend | JSON |
+| End date | DateTime | Back + Frontend | JSON |
+| Start date | DateTime | Back + Frontend | JSON |
 
 #### `Financial info`
 
 | Field | Type | Direct access | Created by |
 |-------|------|---------------|------------|
-| BIK | Double | Backend | JSON |
-| CO2 tax | Double | Backend | JSON |
-| Fiscal value | Double | Backend | JSON |
-| Lease cost | Double | Backend | JSON |
-| Tax deductibility | Double | Backend | JSON |
+| BIK | Double | Back + Frontend | JSON |
+| CO2 tax | Double | Back + Frontend | JSON |
+| Fiscal value | Double | Back + Frontend | JSON |
+| Lease cost | Double | Back + Frontend | JSON |
+| Tax deductibility | Double | Back + Frontend | JSON |
 
 #### `Monitoring info`
 
 | Field | Type | Direct access | Created by |
 |-------|------|---------------|------------|
-| Clearance id | String | Backend | JSON |
-| Monitoring level | Int32 | Backend | JSON |
-| Monitoring state | Int32 | Backend | JSON |
+| Clearance id | String | Back + Frontend | JSON |
+| Monitoring level | Int32 | Back + Frontend | JSON |
+| Monitoring state | Int32 | Back + Frontend | JSON |
 
 #### `Pricing`
 
 | Field | Type | Direct access | Created by |
 |-------|------|---------------|------------|
-| Address | String | None | JSON |
-| Charging Type | Int32 | None | JSON |
-| Cost | Double | None | JSON |
-| End | DateTime | None | JSON |
-| Reimbursement | Boolean | None | JSON |
-| Start | DateTime | None | JSON |
-| Type | Int32 | None | JSON |
-| User | Guid | None | JSON |
+| Address | String | Frontend | JSON |
+| Charging Type | Int32 | Frontend | JSON |
+| Cost | Double | Frontend | JSON |
+| End | DateTime | Frontend | JSON |
+| Reimbursement | Boolean | Frontend | JSON |
+| Start | DateTime | Frontend | JSON |
+| Type | Int32 | Frontend | JSON |
+| User | Guid | Frontend | JSON |
 
 #### `Vehicle info`
 
 | Field | Type | Direct access | Created by |
 |-------|------|---------------|------------|
-| License plate | String | Backend | JSON |
-| Make | Int32 | Backend | JSON |
-| Status | Int32 | Backend | JSON |
-| VIN | String | Backend | JSON |
+| License plate | String | Back + Frontend | JSON |
+| Make | Int32 | Back + Frontend | JSON |
+| Status | Int32 | Back + Frontend | JSON |
+| VIN | String | Back + Frontend | JSON |
 
 #### `VehicleId`
 
 | Field | Type | Direct access | Created by |
 |-------|------|---------------|------------|
-| Id | String | Backend | JSON |
+| Id | String | Back + Frontend | JSON |
 
 ---
 
